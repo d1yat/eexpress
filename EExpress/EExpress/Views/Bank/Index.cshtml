@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "Bank";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Form Bank</h3>
+            </div>
+            <form class="form-horizontal" role="form">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Code</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" id="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Name</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" id="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Rekening</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" id="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Status</label>
+                        <div class="col-md-10">
+                            <select class="form-control" id="">
+                                <option value="">Please Select</option>
+                                <option value="0">Deactivate</option>
+                                <option value="1">Activate</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save</button>
+                    <button class="btn btn-default" type="reset">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">List Bank</h3>
+                <div class="box-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input class="form-control pull-right" type="text" id="" placeholder="Search">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    <tr>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Rekening</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr>
+                        <td>BCA</td>
+                        <td>Bank Central Asia</td>
+                        <td>1234</td>
+                        <th><span class="label label-default">Activate</span></th>
+                    </tr>
+                    <tr>
+                        <td>GR</td>
+                        <td>Giro - PT Mitra Artistika</td>
+                        <td>1234</td>
+                        <th><span class="label label-default">Activate</span></th>
+                    </tr>
+                    <tr>
+                        <td>CSH</td>
+                        <td>Cash</td>
+                        <td>1234</td>
+                        <th><span class="label label-default">Deactivate</span></th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+

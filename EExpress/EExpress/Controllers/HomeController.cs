@@ -10,7 +10,7 @@ namespace EExpress.Controllers
     {
         public ActionResult Index()
         {
-            return Content("Success! Welcome to my web site.");
+            return View();
         }
 
         public ActionResult About()

@@ -1,0 +1,430 @@
+﻿@{ 
+    ViewBag.Title = "Customer";
+}
+
+<div ng-app="myApp" ng-controller="customerController">
+    <div class="row" ng-show="message">
+        <div class="col-md-12">
+            <div class="alert alert-info alert-dismissible">
+                <button class="close" type="button" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-info"></i> Alert!</h4>
+                <p>{{message}}</p>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Form Customer</h3>
+            </div>
+            <form class="form-horizontal" role="form" id="formCustomer">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Customer Id</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" ng-model="m.custno" primary-key>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Customer Name</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" ng-model="m.nm">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Alamat</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" ng-model="m.alm1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input class="form-control" type="text" ng-model="m.alm2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input class="form-control" type="text" ng-model="m.alm3">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Telp</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" type="text" ng-model="m.tlp">
+                        </div>
+                        <label class="control-label col-sm-2">NPWP</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" type="text" ng-model="m.npwp">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Contact Person</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" ng-model="m.ct_person">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Status</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" ng-model="m.statusx">
+                                <option ng-repeat="opt in ddlStatus" value="{{opt.value}}" ng-selected="m.statusx === opt.value">{{opt.text}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Cetak / Print Connocement</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" ng-model="m.ctk_hrg">
+                                <option ng-repeat="opt in ddlYesNo" value="{{opt.value}}" ng-selected="m.ctk_hrg === opt.value">{{opt.text}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Jenis Pembayaran</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" ng-model="m.k_payment">
+                                <option ng-repeat="opt in ddlPaymentMethod" value="{{opt.value}}" ng-selected="m.k_payment === opt.value">{{opt.text}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Harga Khusus</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" ng-model="m.hrgkhs">
+                                <option ng-repeat="opt in ddlYesNo" value="{{opt.value}}" ng-selected="m.hrgkhs === opt.value">{{opt.text}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Cetak Penerima Connocement</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" ng-model="m.cetak_penerima">
+                                <option ng-repeat="opt in ddlYesNo" value="{{opt.value}}" ng-selected="m.cetak_penerima === opt.value">{{opt.text}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Special Minimum Price (Tarif)</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" ng-model="m.hrgspecial">
+                                <option ng-repeat="opt in ddlYesNo" value="{{opt.value}}" ng-selected="m.hrgspecial === opt.value">{{opt.text}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group hidden">
+                        <label class="control-label col-sm-2">Term Invoice</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" type="text">
+                        </div>
+                        <div class="col-sm-6">
+                            <select class="form-control">
+                                <option value="">Please Select</option>
+                                <option value="Hari">Hari</option>
+                                <option value="Bulan">Bulan</option>
+                                <option value="Tahun">Tahun</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button class="btn btn-primary" type="button" ng-click="addEditCustomer()" id="btnSave">
+                        <i class="fa fa-save"></i> Save
+                    </button>
+                    <button class="btn btn-default" type="button" ng-click="resetForm()" id="btnCancel">Cancel</button>
+                    <button class="btn btn-default disabled" type="button" data-toggle="modal" data-target="#termInvoice" id="btnTermInvoice">Term Invoice</button>
+                    <button class="btn btn-default disabled" type="button" data-toggle="modal" data-target="#divisi" id="btnDivisi">Divisi / Seksi</button>
+                    <button class="btn btn-info pull-right" type="button" data-toggle="modal" data-target="#tarif"><i class="fa fa-folder-open-o"></i> Tarif</button>
+                </div>
+            </form>
+
+            <div class="modal fade" id="termInvoice" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button class="close" type="button" data-dismiss="modal" aria-hidden="true" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Term Invoice</h4>
+                        </div>
+                        <form class="form-horizontal" role="form">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">Customer Id</label>
+                                            <div class="col-md-10">
+                                                <input class="form-control" type="text" id="customerId" ng-model="m.custno">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">Customer Name</label>
+                                            <div class="col-md-10">
+                                                <input class="form-control" type="text" id="customerName" ng-model="m.nm">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">Term</label>
+                                            <div class="col-md-5">
+                                                <input class="form-control" type="text" id="term">
+                                            </div>
+                                            <div class="col-md-5">
+                                                <select class="form-control">
+                                                    <option value="">Please Select</option>
+                                                    <option value="1">Hari</option>
+                                                    <option value="2">Bulan</option>
+                                                    <option value="3">Tahun</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Customer Id</th>
+                                                    <th>Customer Name</th>
+                                                    <th>Term</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>CGK1</td>
+                                                    <td>PT MITRA ARTISTIKA CIPTA</td>
+                                                    <td>1 Bulan</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-default pull-left" type="button" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
+                                <button class="btn btn-primary" type="button"><i class="fa fa-save"></i> Save</button>
+                                <button class="btn btn-default" type="reset">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="divisi" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button class="close" type="button" data-dismiss="modal" aria-hidden="true" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Divisi / Seksi</h4>
+                        </div>
+                        <form class="form-horizontal" role="form">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">Customer Id</label>
+                                            <div class="col-md-4">
+                                                <input class="form-control" type="text" id="customerId">
+                                            </div>
+                                            <label class="control-label col-md-2">Divisi Id</label>
+                                            <div class="col-md-4">
+                                                <input class="form-control" type="text" id="divisiId">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">Divisi Name</label>
+                                            <div class="col-md-10">
+                                                <input class="form-control" type="text" id="divisiName">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">Alamat</label>
+                                            <div class="col-md-10">
+                                                <input class="form-control" type="text" id="alamat1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input class="form-control" type="text" id="alamat2">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">Telp</label>
+                                            <div class="col-md-10">
+                                                <input class="form-control" type="text" id="telp">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">Contact Person</label>
+                                            <div class="col-md-10">
+                                                <input class="form-control" type="text" id="customerName">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">Status</label>
+                                            <div class="col-md-10">
+                                                <select class="form-control" id="status">
+                                                    <option value="">Please Select</option>
+                                                    <option value="0">Deactivate</option>
+                                                    <option value="1">Activate</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Customer Id</th>
+                                                    <th>Divisi Id</th>
+                                                    <th>Divisi Name</th>
+                                                    <th>Alamat</th>
+                                                    <th>Telp</th>
+                                                    <th>Contact Person</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Some Text</td>
+                                                    <td>Some Text</td>
+                                                    <td>Some Text</td>
+                                                    <td>Some Text</td>
+                                                    <td>Some Text</td>
+                                                    <td>Some Text</td>
+                                                    <td>Some Text</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-default pull-left" type="button" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
+                                <button class="btn btn-primary" type="button"><i class="fa fa-save"></i> Save</button>
+                                <button class="btn btn-default" type="reset">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="tarif" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button class="close" type="button" data-dismiss="modal" aria-hidden="true" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Tarif</h4>
+                        </div>
+                        <form class="form-horizontal" role="form">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.Partial("~/Views/Shared/Tarif.cshtml")
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                                @*<div class="row">
+                                        <div class="col-md-12">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Customer Id</th>
+                                                        <th>Divisi Id</th>
+                                                        <th>Divisi Name</th>
+                                                        <th>Alamat</th>
+                                                        <th>Telp</th>
+                                                        <th>Contact Person</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Some Text</td>
+                                                        <td>Some Text</td>
+                                                        <td>Some Text</td>
+                                                        <td>Some Text</td>
+                                                        <td>Some Text</td>
+                                                        <td>Some Text</td>
+                                                        <td>Some Text</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>*@
+                                <!-- /.row -->
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-default pull-left" type="button" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
+                                <button class="btn btn-primary" type="button"><i class="fa fa-save"></i> Save</button>
+                                <button class="btn btn-default" type="reset">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">List Customer</h3>
+                @*<button class="btn btn-default pull-right" type="button"><i class="fa fa-refresh"></i> Refresh</button>*@
+            </div>
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Customer Id</th>
+                            <th>Customer Name</th>
+                            <th>Status</th>
+                            <th hidden>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="c in customers" ng-click="getCustomerById(c.custno)" pointer>
+                            <td>{{c.custno}}</td>
+                            <td>{{c.nm}}</td>
+                            <td><span class="label label-default">{{c.statusx === "Y" ? "Activate" : "Deactivate"}}</span></td>
+                            <td hidden>
+                                <button class="btn btn-default hidden" type="button" ng-click="getCustomerById(c.custno)">
+                                    <i class="fa fa-pencil"></i>
+                                </button>
+                                <button class="btn btn-default hidden" type="button" ng-click="getCustomers()">
+                                    <i class="fa fa-refresh"></i>
+                                </button>
+                                <button class="btn btn-default hidden" type="button">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+</div>
+
+@section Scripts {
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/angularjs")
+@Scripts.Render("~/bundles/angular-ui")
+<script src="@Url.Content("~/Scripts/site.js")"></script>
+<script src="@Url.Content("~/Scripts/EExpress/app.js")"></script>
+<script src="@Url.Content("~/Scripts/EExpress/services/customerService.js")"></script>
+<script src="@Url.Content("~/Scripts/EExpress/controllers/customerController.js")"></script>
+}

@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "Courier";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Form City</h3>
+            </div>
+            <form class="form-horizontal" role="form">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Courier Id</label>
+                        <div class="col-md-4">
+                            <input class="form-control" type="text" id="">
+                        </div>
+                        <div class="col-md-6 radio">
+                            <label>
+                                <input type="radio" name="optionRadios"> Motor
+                            </label>
+                            <label>
+                                <input type="radio" name="optionRadios"> Mobil
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Name</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" id="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Status</label>
+                        <div class="col-md-10">
+                            <select class="form-control" id="">
+                                <option value="">Please Select</option>
+                                <option value="0">Deactivate</option>
+                                <option value="1">Activate</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">HP / Telephone</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" id="">
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save</button>
+                    <button class="btn btn-default" type="button">Update Agent</button>
+                    <button class="btn btn-default" type="reset">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">List City</h3>
+                <div class="box-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input class="form-control pull-right" type="text" id="" placeholder="Search">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    <tr>
+                        <th>Courier Id</th>
+                        <th>Name</th>
+                        <th>HP / Telephone</th>
+                        <th>What this?</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Tedjo</td>
+                        <td>0815</td>
+                        <td>Motor</td>
+                        <th><span class="label label-default">Activate</span></th>
+                    </tr>
+                </table>
+            </div>
+            <div class="box-footer">
+                <p> Note: <br>
+                    <span><small class="help-block">* -K- Untuk kode kurir</small></span>
+                    <span><small class="help-block">* -D- Untuk kode driver</small></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+

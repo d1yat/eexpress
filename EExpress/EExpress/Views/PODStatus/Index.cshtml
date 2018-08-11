@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "POD Status";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Form POD Status</h3>
+            </div>
+            <form class="form-horizontal" role="form">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Pod Id</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" id="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Status Name</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" id="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Status</label>
+                        <div class="col-md-10">
+                            <select class="form-control" id="">
+                                <option value="">Please Select</option>
+                                <option value="0">Deactivate</option>
+                                <option value="1">Activate</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Relation</label>
+                        <div class="col-md-10">
+                            <select class="form-control" id="">
+                                <option value="">Please Select</option>
+                                <option value="0">Reject</option>
+                                <option value="1">Success</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save</button>
+                    <button class="btn btn-default" type="reset">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">List POD Status</h3>
+                <div class="box-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input class="form-control pull-right" type="text" id="" placeholder="Search">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    <tr>
+                        <th>Pod Id</th>
+                        <th>Status Name</th>
+                        <th>Status</th>
+                        <th>Relation</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Yang Bersangkutan</td>
+                        <td><span class="label label-default">Deactivate</span></td>
+                        <td><span class="label label-success">Success</span></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Pindah</td>
+                        <td><span class="label label-default">Deactivate</span></td>
+                        <td><span class="label label-danger">Reject</span></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Secretary</td>
+                        <td><span class="label label-default">Activate</span></td>
+                        <td><span class="label label-success">Success</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+

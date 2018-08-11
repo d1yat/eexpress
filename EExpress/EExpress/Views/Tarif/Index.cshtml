@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Tarif";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Form Tarif</h3>
+            </div>
+            <form class="form-horizontal" role="form">
+                <div class="box-body">
+                    @Html.Partial("~/Views/Shared/Tarif.cshtml")
+                </div>
+                <div class="box-footer">
+                    <button class="btn btn-primary" type="button"><i class="fa fa-save"></i> Save</button>
+                    <button class="btn btn-default" type="reset">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
