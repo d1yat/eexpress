@@ -1,6 +1,7 @@
 ﻿app.controller("customerController", function ($scope, customerService) {
 
     $scope.m = {};
+    $scope.m.sub = {};
     $scope.message = "";
 
     getCustomers();
@@ -12,7 +13,7 @@
             var customer = response.data;
 
             $scope.m = {
-                custno: customer.custno,
+                id: customer.id,
                 nm: customer.nm,
                 alm1: customer.alm1,
                 alm2: customer.alm2,
@@ -39,7 +40,7 @@
 
     $scope.addEditCustomer = function () {
         var customer = {
-            custno: $scope.m.custno,
+            id: $scope.m.id,
             nm: $scope.m.nm,
             alm1: $scope.m.alm1,
             alm2: $scope.m.alm2,
@@ -61,6 +62,43 @@
         $scope.resetForm();
     }
 
+    $scope.resetForm = function () {
+        $scope.m = {};
+
+        $("#btnTermInvoice").addClass("disabled");
+        $("#btnDivisi").addClass("disabled");
+    }
+
+    $scope.getTermInvoice = function (id) {
+        var request = customerService.GetTermInvoice(id);
+
+        request.then(function (response) {
+            var termInvoice = response.data;
+
+            $scope.m.sub = {
+                cust_id: termInvoice.cust_id,
+                nm: termInvoice.nm,
+                termx: termInvoice.termx,
+                descx: termInvoice.descx
+            };
+        });
+    }
+
+    $scope.addEditTermInvoice = function () {
+        var termInvoice = {
+            cust_id: $scope.m.sub.cust_id,
+            nm: $scope.m.sub.nm,
+            termx: $scope.m.sub.termx,
+            descx: $scope.m.sub.descx
+        }
+
+        var request = customerService.AddEditTermInvoice(termInvoice);
+        showMessage(request);
+
+        $("#termInvoice").modal("hide");
+        //$scope.resetForm();
+    }
+
     $scope.ddlStatus = [
         { value: "", text: "Please Select" },
         { value: "Y", text: "Activate" },
@@ -78,6 +116,13 @@
         { value: "CSH", text: "Cash" },
         { value: "KRD", text: "Credit" }
     ];
+
+    $scope.ddlPeriode = [
+        { value: "", text: "Please Select" },
+        { value: "Hari", text: "Hari" },
+        { value: "Bulan", text: "Bulan" },
+        { value: "Tahun", text: "Tahun" },
+    ]
 
     function getCustomers() {
         var request= customerService.GetCustomers();
@@ -99,10 +144,4 @@
         });
     }
 
-    $scope.resetForm = function() {
-        $scope.m = {};
-
-        $("#btnTermInvoice").addClass("disabled");
-        $("#btnDivisi").addClass("disabled");
-    }
 });

@@ -20,7 +20,9 @@ namespace EExpress.Services
 
         public static SqlCommand GetCommand(string sqlCommand)
         {
-            return new SqlCommand(sqlCommand, GetConnection());
+            SqlCommand cmd = new SqlCommand(sqlCommand, GetConnection());
+            cmd.CommandType = CommandType.StoredProcedure;
+            return cmd;
         }
 
         public static SqlCommand GetCommand(string sqlCommand, Table tableName)

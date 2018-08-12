@@ -11,7 +11,7 @@ namespace EExpress.Models
     {
         //[DisplayName("Customer Id")]
         //[Required(ErrorMessage ="Customer Id is required")]
-        public Guid custno { get; set; }
+        public Guid id { get; set; }
 
         //[DisplayName("Customer Name")]
         //[Required(ErrorMessage = "Customer Name is required")]

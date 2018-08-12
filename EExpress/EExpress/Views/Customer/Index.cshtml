@@ -25,7 +25,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2">Customer Id</label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="text" ng-model="m.custno" primary-key>
+                            <input class="form-control" type="text" ng-model="m.id" primary-key>
                         </div>
                     </div>
                     <div class="form-group">
@@ -134,9 +134,9 @@
                         <i class="fa fa-save"></i> Save
                     </button>
                     <button class="btn btn-default" type="button" ng-click="resetForm()" id="btnCancel">Cancel</button>
-                    <button class="btn btn-default disabled" type="button" data-toggle="modal" data-target="#termInvoice" id="btnTermInvoice">Term Invoice</button>
+                    <button class="btn btn-default disabled" type="button" ng-click="getTermInvoice(m.id)" data-toggle="modal" data-target="#termInvoice" id="btnTermInvoice">Term Invoice</button>
                     <button class="btn btn-default disabled" type="button" data-toggle="modal" data-target="#divisi" id="btnDivisi">Divisi / Seksi</button>
-                    <button class="btn btn-info pull-right" type="button" data-toggle="modal" data-target="#tarif"><i class="fa fa-folder-open-o"></i> Tarif</button>
+                    <button class="btn btn-info pull-right" type="button" data-toggle="modal" data-target="#tarif"><i class="fa fa-anchor"></i> Tarif</button>
                 </div>
             </form>
 
@@ -154,26 +154,23 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-2">Customer Id</label>
                                             <div class="col-md-10">
-                                                <input class="form-control" type="text" id="customerId" ng-model="m.custno">
+                                                <input class="form-control" type="text" id="customerId" ng-model="m.sub.cust_id" primary-key>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-md-2">Customer Name</label>
                                             <div class="col-md-10">
-                                                <input class="form-control" type="text" id="customerName" ng-model="m.nm">
+                                                <input class="form-control" type="text" id="customerName" ng-model="m.sub.nm">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-md-2">Term</label>
                                             <div class="col-md-5">
-                                                <input class="form-control" type="text" id="term">
+                                                <input class="form-control" type="text" id="term" ng-model="m.sub.termx">
                                             </div>
                                             <div class="col-md-5">
-                                                <select class="form-control">
-                                                    <option value="">Please Select</option>
-                                                    <option value="1">Hari</option>
-                                                    <option value="2">Bulan</option>
-                                                    <option value="3">Tahun</option>
+                                                <select class="form-control" ng-model="m.sub.descx">
+                                                    <option ng-repeat="opt in ddlPeriode" value="{{opt.value}}" ng-selected="m.sub.descx === opt.value">{{opt.text}}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -192,9 +189,9 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>CGK1</td>
-                                                    <td>PT MITRA ARTISTIKA CIPTA</td>
-                                                    <td>1 Bulan</td>
+                                                    <td>{{m.sub.cust_id}}</td>
+                                                    <td>{{m.sub.nm}}</td>
+                                                    <td>{{m.sub.termx}} {{m.sub.descx}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -204,8 +201,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-default pull-left" type="button" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
-                                <button class="btn btn-primary" type="button"><i class="fa fa-save"></i> Save</button>
-                                <button class="btn btn-default" type="reset">Cancel</button>
+                                <button class="btn btn-primary" type="button" ng-click="addEditTermInvoice()"><i class="fa fa-save"></i> Save</button>
+                                <button class="btn btn-default hidden" type="button" ng-click="resetForm()">Cancel</button>
                             </div>
                         </form>
                     </div>
@@ -393,12 +390,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="c in customers" ng-click="getCustomerById(c.custno)" pointer>
-                            <td>{{c.custno}}</td>
+                        <tr ng-repeat="c in customers" ng-click="getCustomerById(c.id)" pointer>
+                            <td>{{c.id}}</td>
                             <td>{{c.nm}}</td>
                             <td><span class="label label-default">{{c.statusx === "Y" ? "Activate" : "Deactivate"}}</span></td>
                             <td hidden>
-                                <button class="btn btn-default hidden" type="button" ng-click="getCustomerById(c.custno)">
+                                <button class="btn btn-default hidden" type="button" ng-click="getCustomerById(c.id)">
                                     <i class="fa fa-pencil"></i>
                                 </button>
                                 <button class="btn btn-default hidden" type="button" ng-click="getCustomers()">

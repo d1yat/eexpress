@@ -14,7 +14,9 @@ namespace EExpress.Models.DbHandlers
     {
         public List<Customer> GetCustomers()
         {
-            using (SqlCommand cmd = General.GetCommand("spGetCustomers", Table.m_customer))
+            string sqlCommand = "spGet";
+
+            using (SqlCommand cmd = General.GetCommand(sqlCommand, Table.m_customer))
             {
                 using (SqlDataAdapter sdAdapter = new SqlDataAdapter(cmd))
                 {
@@ -26,7 +28,7 @@ namespace EExpress.Models.DbHandlers
                     {
                         listCustomer.Add(new Customer()
                         {
-                            custno = Guid.Parse(dr["custno"].ToString()),
+                            id = Guid.Parse(dr["id"].ToString()),
                             nm = dr["nm"] as string,
                             alm1 = dr["alm1"] as string,
                             alm2 = dr["alm2"] as string,
@@ -50,12 +52,15 @@ namespace EExpress.Models.DbHandlers
 
         }
 
-        public Customer GetCustomerById(string id)
+        public Customer GetCustomerById(Guid id)
         {
-            using (SqlCommand cmd = General.GetCommand("spGetCustomerById"))
+            string sqlCommand = "spGetById";
+
+            using (SqlCommand cmd = General.GetCommand(sqlCommand))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.Add("@TableName", SqlDbType.NVarChar, 50).Value =  Table.m_customer;
+                cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16).Value =  id;
 
                 using (SqlDataAdapter sdAdapter = new SqlDataAdapter(cmd))
                 {
@@ -65,7 +70,7 @@ namespace EExpress.Models.DbHandlers
                     Customer customer = new Customer();
                     foreach (DataRow dr in ds.Tables["m_customer"].Rows)
                     {
-                        customer.custno = Guid.Parse(dr["custno"].ToString());
+                        customer.id = Guid.Parse(dr["id"].ToString());
                         customer.nm = dr["nm"] as string;
                         customer.alm1 = dr["alm1"] as string;
                         customer.alm2 = dr["alm2"] as string;
@@ -88,12 +93,42 @@ namespace EExpress.Models.DbHandlers
 
         }
 
+        public int AddEditCustomer(Customer customer)
+        {
+            string sqlCommand = "spAddEditCustomer";
+
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@id", customer.id);
+            parameters.Add("@nm", customer.nm);
+            parameters.Add("@alm1", customer.alm1);
+            parameters.Add("@alm2", customer.alm2);
+            parameters.Add("@alm3", customer.alm3);
+            parameters.Add("@tlp", customer.tlp);
+            parameters.Add("@ct_person", customer.ct_person);
+            parameters.Add("@statusx", customer.statusx);
+            parameters.Add("@ctk_hrg", customer.ctk_hrg);
+            parameters.Add("@npwp", customer.npwp);
+            parameters.Add("@k_payment", customer.k_payment);
+            parameters.Add("@hrgkhs", customer.hrgkhs);
+            parameters.Add("@cetak_penerima", customer.cetak_penerima);
+            parameters.Add("@user_entry", customer.user_entry);
+            parameters.Add("@hrgspecial", customer.hrgspecial);
+
+            using (SqlCommand cmd = General.GetCommand(sqlCommand, parameters))
+            {
+                if (cmd.Connection.State == ConnectionState.Closed)
+                    cmd.Connection.Open();
+
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
         public int Edit(Customer customer)
         {
             string sqlCommand = "spAddEditCustomer";
 
             Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@custno", customer.custno);
+            parameters.Add("@id", customer.id);
             parameters.Add("@nm", customer.nm);
             parameters.Add("@alm1", customer.alm1);
             parameters.Add("@alm2", customer.alm2);
@@ -123,7 +158,7 @@ namespace EExpress.Models.DbHandlers
             string sqlCommand = "spAddEditCustomer";
 
             Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@custno", Guid.NewGuid());
+            parameters.Add("@id", customer.id);
             parameters.Add("@nm", customer.nm);
             parameters.Add("@alm1", customer.alm1);
             parameters.Add("@alm2", customer.alm2);
@@ -138,6 +173,51 @@ namespace EExpress.Models.DbHandlers
             parameters.Add("@cetak_penerima", customer.cetak_penerima);
             parameters.Add("@user_entry", customer.user_entry);
             parameters.Add("@hrgspecial", customer.hrgspecial);
+
+            using (SqlCommand cmd = General.GetCommand(sqlCommand, parameters))
+            {
+                if (cmd.Connection.State == ConnectionState.Closed)
+                    cmd.Connection.Open();
+
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public TermInvoice GetTermInvoice(Guid id)
+        {
+            string sqlCommand = "spGetTermInvoice";
+
+            using (SqlCommand cmd = General.GetCommand(sqlCommand))
+            {
+                cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16).Value = id;
+                using(SqlDataAdapter sdAdapter = new SqlDataAdapter(cmd))
+                {
+                    DataSet ds = new DataSet();
+                    sdAdapter.Fill(ds, "m_term");
+
+                    TermInvoice termInvoice = new TermInvoice();
+                    foreach (DataRow dr in ds.Tables["m_term"].Rows)
+                    {
+                        termInvoice.cust_id = Guid.Parse(dr["id"].ToString());
+                        termInvoice.nm = dr["nm"] as string;
+                        termInvoice.termx = dr["termx"] as string;
+                        termInvoice.descx = dr["descx"] as string;
+                    }
+
+                    return termInvoice;
+                }
+            }
+        }
+
+        public int AddTermInvoice(TermInvoice termInvoice)
+        {
+            string sqlCommand = "spAddEditTermInvoice";
+
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@cust_id", termInvoice.cust_id);
+            parameters.Add("@nm", termInvoice.nm);
+            parameters.Add("@termx", termInvoice.termx);
+            parameters.Add("@descx", termInvoice.descx);
 
             using (SqlCommand cmd = General.GetCommand(sqlCommand, parameters))
             {

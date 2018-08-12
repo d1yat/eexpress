@@ -22,29 +22,6 @@ namespace EExpress.Controllers.CourierCargo.MasterData
             return View();
         }
 
-        [HttpPost]
-        public JsonResult AddEditCustomer(Customer customer)
-        {
-            if (ModelState.IsValid)
-            {
-                if(customer.custno != Guid.Empty)
-                {
-                    // Edit Mode
-                    db.Edit(customer);
-                }
-                else
-                {
-                    // Add Mode
-                    db.Add(customer);
-                }
-
-            }
-
-            string status = customer.custno != null ? "updated" : "saved";
-            string message = $"User has been {status} successfully";
-            return Json(message, JsonRequestBehavior.AllowGet);
-        }
-
         public JsonResult GetCustomers()
         {
             var listCustomer = db.GetCustomers();
@@ -52,11 +29,44 @@ namespace EExpress.Controllers.CourierCargo.MasterData
             return Json(listCustomer, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetCustomerById(string id)
+        public JsonResult GetCustomerById(Guid id)
         {
             var customer = db.GetCustomerById(id);
 
             return Json(customer, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult AddEditCustomer(Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+                db.AddEditCustomer(customer);
+            }
+
+            string status = customer.id != Guid.Empty ? "updated" : "saved";
+            string message = $"User has been {status} successfully";
+            return Json(message, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetTermInvoice(Guid id)
+        {
+            var termInvoice = db.GetTermInvoice(id);
+
+            return Json(termInvoice, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult AddEditTermInvoice(TermInvoice termInvoice)
+        {
+            if (ModelState.IsValid)
+            {
+                db.AddTermInvoice(termInvoice);
+            }
+
+            string status = termInvoice.cust_id != Guid.Empty ? "updated" : "saved";
+            string message = $"Term Invoice has been {status} successfully";
+            return Json(message, JsonRequestBehavior.AllowGet);
         }
     }
 }
