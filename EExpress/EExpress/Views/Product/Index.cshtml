@@ -2,97 +2,100 @@
 @{
     ViewBag.Title = "Product";
 }
-
-<div class="row">
-    <div class="col-md-12">
-        <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">Form Product</h3>
-            </div>
-            <form class="form-horizontal" role="form">
-                <div class="box-body">
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Product Id</label>
-                        <div class="col-md-10">
-                            <input class="form-control" type="text" id="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Product Name</label>
-                        <div class="col-md-10">
-                            <input class="form-control" type="text" id="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Status</label>
-                        <div class="col-md-10">
-                            <select class="form-control" id="">
-                                <option value="">Please Select</option>
-                                <option value="0">Deactivate</option>
-                                <option value="1">Activate</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="box-footer">
-                    <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save</button>
-                    <button class="btn btn-default" type="reset">Cancel</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- /.row -->
-
-<div class="row">
-    <div class="col-md-12">
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">List Product</h3>
-                <div class="box-tools">
-                    <div class="input-group input-group-sm" style="width: 150px;">
-                        <input class="form-control pull-right" type="text" id="" placeholder="Search">
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box-body table-responsive no-padding">
-                <table class="table table-hover">
-                    <tr>
-                        <th>Product Id</th>
-                        <th>Product Name</th>
-                        <th>Status</th>
-                    </tr>
-                    <tr>
-                        <td>NR</td>
-                        <td>Normal</td>
-                        <td><span class="label label-default">Activate</span></td>
-                    </tr>
-                    <tr>
-                        <td>UR</td>
-                        <td>Urgent</td>
-                        <td><span class="label label-default">Activate</span></td>
-                    </tr>
-                    <tr>
-                        <td>TU</td>
-                        <td>Top Urgent</td>
-                        <td><span class="label label-default">Activate</span></td>
-                    </tr>
-                    <tr>
-                        <td>-</td>
-                        <td>Moda</td>
-                        <td><span class="label label-default">Deactivate</span></td>
-                    </tr>
-                    <tr>
-                        <td>PP</td>
-                        <td>Port to Port</td>
-                        <td><span class="label label-default">Deactivate</span></td>
-                    </tr>
-                </table>
+<div ng-app="myApp" ng-controller="productController">
+    <div class="row" ng-show="message">
+        <div class="col-md-12">
+            <div class="alert alert-info alert-dismissible">
+                <button class="close" type="button" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-info"></i> Alert!</h4>
+                <p>{{message}}</p>
             </div>
         </div>
     </div>
+    <!-- /.row -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Form Product</h3>
+                </div>
+                <form class="form-horizontal" role="form">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Product Id</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="text" id="productId" ng-model="m.kode">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Product Name</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="text" id="productName" ng-model="m.nm">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Status</label>
+                            <div class="col-md-10">
+                                <select class="form-control" id="ddlStatus" ng-model="m.statusx">
+                                    <option ng-repeat="opt in ddlStatus" value="{{opt.value}}" ng-selected="m.statusx === opt.value">{{opt.text}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <button class="btn btn-primary" type="submit" ng-click="addEditProduct()"><i class="fa fa-save"></i> Save</button>
+                        <button class="btn btn-default" type="button" ng-click="resetForm()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">List Product</h3>
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input class="form-control pull-right" type="text" id="" placeholder="Search" ng-model="productName">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Product Id</th>
+                                <th>Product Name</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="product in products | filter: productName" ng-click="getProductById(product.id)" pointer>
+                                <td>{{product.kode}}</td>
+                                <td>{{product.nm}}</td>
+                                <td><span class="label label-default">{{product.statusx === "Y" ? "Activate" : "Deactivate"}}</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
 </div>
-<!-- /.row -->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/angularjs")
+    @Scripts.Render("~/bundles/angular-ui")
+    <script src="@Url.Content("~/Scripts/site.js")"></script>
+    <script src="@Url.Content("~/Scripts/EExpress/app.js")"></script>
+    <script src="@Url.Content("~/Scripts/EExpress/services/productService.js")"></script>
+    <script src="@Url.Content("~/Scripts/EExpress/controllers/productController.js")"></script>
+}
