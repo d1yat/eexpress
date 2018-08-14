@@ -1,7 +1,14 @@
 ﻿app.controller("customerController", function ($scope, customerService) {
 
+    $scope.maxSize = 5;
+    $scope.pageIndex = 1;
+    $scope.pageSize = 2;
+    $scope.totalCount = 0;
+    $scope.numberOfPages = [];
+    
     $scope.m = {};
     $scope.m.sub = {};
+    $scope.m.subdiv = {};
     $scope.message = "";
 
     getCustomers();
@@ -69,8 +76,12 @@
         $("#btnDivisi").addClass("disabled");
     }
 
-    $scope.getTermInvoice = function (id) {
-        var request = customerService.GetTermInvoice(id);
+    $scope.resetSubdiv = function () {
+        $scope.m.subdiv = {};
+    }
+
+    $scope.getTermInvoice = function () {
+        var request = customerService.GetTermInvoice($scope.m.id);
 
         request.then(function (response) {
             var termInvoice = response.data;
@@ -99,6 +110,76 @@
         //$scope.resetForm();
     }
 
+    $scope.pageChanged = function () {
+        getCustomers();
+    }
+
+    $scope.getDivisi = function () {
+        var request = customerService.GetDivisi($scope.m.id);
+
+        request.then(function (response) {
+            $scope.listDivisi = response.data;
+
+        }, function (response) {
+            $scope.message = response.statusText;
+        });
+    }
+
+    $scope.getDivisiById = function (id) {
+        var request = customerService.GetDivisiById(id);
+
+        request.then(function (response) {
+            var divisi = response.data;
+
+            $scope.m.subdiv = {
+                id: divisi.id,
+                nm: divisi.nm,
+                alm1: divisi.alm1,
+                alm2: divisi.alm2,
+                tlp: divisi.tlp,
+                ct_person: divisi.ct_person,
+                statusx: divisi.statusx,
+                ctk_hrg: divisi.ctk_hrg,
+                npwp: divisi.npwp,
+                k_payment: divisi.k_payment,
+                countx: divisi.countx,
+                user_entry: divisi.user_entry,
+                cust_id: divisi.cust_id
+            };
+
+        }, function (response) {
+            $scope.message = response.statusText;
+        });
+    }
+
+    $scope.addEditDivisi = function () {
+        var divisi = {
+            id: $scope.m.subdiv.id,
+            nm: $scope.m.subdiv.nm,
+            alm1: $scope.m.subdiv.alm1,
+            alm2: $scope.m.subdiv.alm2,
+            tlp: $scope.m.subdiv.tlp,
+            ct_person: $scope.m.subdiv.ct_person,
+            statusx: $scope.m.subdiv.statusx,
+            ctk_hrg: $scope.m.subdiv.ctk_hrg,
+            npwp: $scope.m.subdiv.npwp,
+            k_payment: $scope.m.subdiv.k_payment,
+            countx: 0,
+            user_entry: "ADMIN",
+            cust_id: $scope.m.id
+        }
+
+        var request = customerService.AddEditDivisi(divisi);
+
+        request.then(function (response) {
+            //What next?
+            $scope.getDivisi($scope.m.id);
+        });
+
+        //Clear form of `Divisi / Seksi'
+        $scope.resetSubdiv();
+    }
+
     $scope.ddlStatus = [
         { value: "", text: "Please Select" },
         { value: "Y", text: "Activate" },
@@ -125,10 +206,15 @@
     ]
 
     function getCustomers() {
-        var request= customerService.GetCustomers();
+        var request= customerService.GetCustomers($scope.pageIndex, $scope.pageSize);
 
         request.then(function (response) {
-            $scope.customers = response.data;
+            $scope.customers = response.data.IndexViewModel;
+            $scope.totalCount = response.data.TotalCount;
+
+            for (var i = 1; i <= $scope.totalCount; i++) {
+                $scope.numberOfPages.push(i);
+            }
         }, function (response) {
             $scope.message = response.statusText;
         });

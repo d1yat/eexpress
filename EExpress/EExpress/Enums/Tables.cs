@@ -9,6 +9,7 @@ namespace EExpress.Enums
     public enum Table
     {
         //[Description("m_customer")]
-        m_customer
+        m_customer,
+        m_div
     }
 }

@@ -22,9 +22,17 @@ namespace EExpress.Controllers.CourierCargo.MasterData
             return View();
         }
 
-        public JsonResult GetCustomers()
+        //public JsonResult GetCustomers()
+        //{
+        //    var listCustomer = db.GetCustomers();
+
+        //    return Json(listCustomer, JsonRequestBehavior.AllowGet);
+        //}
+
+        //[HttpGet]
+        public JsonResult GetCustomers(int pageIndex, int pageSize)
         {
-            var listCustomer = db.GetCustomers();
+            var listCustomer = db.GetCustomers(pageIndex, pageSize);
 
             return Json(listCustomer, JsonRequestBehavior.AllowGet);
         }
@@ -61,10 +69,37 @@ namespace EExpress.Controllers.CourierCargo.MasterData
         {
             if (ModelState.IsValid)
             {
-                db.AddTermInvoice(termInvoice);
+                db.AddEditTermInvoice(termInvoice);
             }
 
             string status = termInvoice.cust_id != Guid.Empty ? "updated" : "saved";
+            string message = $"Term Invoice has been {status} successfully";
+            return Json(message, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetDivisi(Guid customerId)
+        {
+            var listDivisi = db.GetDivisi(customerId);
+
+            return Json(listDivisi, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetDivisiById(Guid id)
+        {
+            var divisi = db.GetDivisiById(id);
+
+            return Json(divisi, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult AddEditDivisi(Divisi divisi)
+        {
+            if (ModelState.IsValid)
+            {
+                db.AddEditDivisi(divisi);
+            }
+
+            string status = divisi.id != Guid.Empty ? "updated" : "saved";
             string message = $"Term Invoice has been {status} successfully";
             return Json(message, JsonRequestBehavior.AllowGet);
         }
