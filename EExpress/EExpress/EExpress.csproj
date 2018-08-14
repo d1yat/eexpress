@@ -191,12 +191,14 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerViewModel.cs" />
+    <Compile Include="Models\DbHandlers\PODStatusDbHandler.cs" />
     <Compile Include="Models\DbHandlers\ProductDbHandler.cs" />
     <Compile Include="Models\DbHandlers\CustomerDbHandler.cs" />
     <Compile Include="Models\Divisi.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Pager.cs" />
+    <Compile Include="Models\PODStatus.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\TermInvoice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -340,8 +342,10 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\EExpress\app.js" />
     <Content Include="Scripts\EExpress\controllers\customerController.js" />
+    <Content Include="Scripts\EExpress\controllers\podStatusController.js" />
     <Content Include="Scripts\EExpress\controllers\productController.js" />
     <Content Include="Scripts\EExpress\services\customerService.js" />
+    <Content Include="Scripts\EExpress\services\podStatusService.js" />
     <Content Include="Scripts\EExpress\services\productService.js" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular.min.js.map" />
