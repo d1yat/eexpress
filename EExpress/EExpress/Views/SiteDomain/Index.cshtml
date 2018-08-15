@@ -42,7 +42,7 @@
                     </div>
                     <div class="box-footer">
                         <button class="btn btn-primary" type="button" ng-click="addEditSiteDomain()"><i class="fa fa-save"></i> Save</button>
-                        <button class="btn btn-default" type="button">Cancel</button>
+                        <button class="btn btn-default hidden" type="button">Cancel</button>
                     </div>
                 </form>
             </div>
@@ -101,7 +101,9 @@
     <script src="@Url.Content("~/Scripts/EExpress/controllers/siteDomainController.js")"></script>
     <script>
         $(function () {
-            $(".select2").select2();
+            $(".select2").select2({
+                width: "100%"
+            });
         });
     </script>
 }
