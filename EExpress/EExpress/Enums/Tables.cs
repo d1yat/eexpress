@@ -12,6 +12,8 @@ namespace EExpress.Enums
         m_customer,
         m_div,
         m_product,
-        m_pod
+        m_pod,
+        m_origin,
+        m_domain
     }
 }

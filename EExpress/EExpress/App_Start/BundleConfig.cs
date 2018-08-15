@@ -40,6 +40,9 @@ namespace EExpress
             bundles.Add(new ScriptBundle("~/bundles/angular-ui").Include(
                       "~/Scripts/angular-ui/ui-bootstrap-tpls.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/select2").Include(
+                      "~/Scripts/select2.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
@@ -59,6 +62,8 @@ namespace EExpress
             bundles.Add(new StyleBundle("~/Content/skin-blue").Include(
                       "~/admin-lte/css/skins/skin-blue.css"));
 
+            bundles.Add(new StyleBundle("~/Content/select2").Include(
+                      "~/Content/css/select2.css"));
         }
     }
 }
