@@ -190,8 +190,10 @@
     <Compile Include="Helpers\EnumsHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Courier.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerViewModel.cs" />
+    <Compile Include="Models\DbHandlers\CourierDbHandler.cs" />
     <Compile Include="Models\DbHandlers\CityDbHandler.cs" />
     <Compile Include="Models\DbHandlers\SiteDomainDbHandler.cs" />
     <Compile Include="Models\DbHandlers\PODStatusDbHandler.cs" />
@@ -348,11 +350,13 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\EExpress\app.js" />
+    <Content Include="Scripts\EExpress\controllers\courierController.js" />
     <Content Include="Scripts\EExpress\controllers\customerController.js" />
     <Content Include="Scripts\EExpress\controllers\cityController.js" />
     <Content Include="Scripts\EExpress\controllers\siteDomainController.js" />
     <Content Include="Scripts\EExpress\controllers\podStatusController.js" />
     <Content Include="Scripts\EExpress\controllers\productController.js" />
+    <Content Include="Scripts\EExpress\services\courierService.js" />
     <Content Include="Scripts\EExpress\services\customerService.js" />
     <Content Include="Scripts\EExpress\services\cityService.js" />
     <Content Include="Scripts\EExpress\services\siteDomainService.js" />

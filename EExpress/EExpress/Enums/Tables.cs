@@ -15,6 +15,7 @@ namespace EExpress.Enums
         m_pod,
         m_origin,
         m_domain,
-        m_city
+        m_city,
+        m_kurir
     }
 }
