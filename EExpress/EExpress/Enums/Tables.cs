@@ -14,6 +14,7 @@ namespace EExpress.Enums
         m_product,
         m_pod,
         m_origin,
-        m_domain
+        m_domain,
+        m_city
     }
 }

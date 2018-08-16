@@ -59,8 +59,9 @@ namespace EExpress.Models.DbHandlers
             using (SqlCommand cmd = General.GetCommand("spGetWithPaging"))
             {
                 cmd.Parameters.Add("@TableName", SqlDbType.VarChar, 50).Value = Table.m_customer;
-                cmd.Parameters.Add("@PageIndex", SqlDbType.Int, 11).Value = pageIndex;
-                cmd.Parameters.Add("@OrderBy", SqlDbType.VarChar, 11).Value = "nm";
+                cmd.Parameters.Add("@PageIndex", SqlDbType.Int).Value = pageIndex;
+                cmd.Parameters.Add("@PageSize", SqlDbType.Int).Value = pageSize;
+                cmd.Parameters.Add("@OrderBy", SqlDbType.VarChar, 50).Value = "nm";
 
                 using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                 {

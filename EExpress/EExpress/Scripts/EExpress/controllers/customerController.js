@@ -1,8 +1,7 @@
 ﻿app.controller("customerController", function ($scope, customerService) {
 
-    $scope.maxSize = 5;
     $scope.pageIndex = 1;
-    $scope.pageSize = 2;
+    $scope.pageSize = 10;
     $scope.totalCount = 0;
     $scope.numberOfPages = [];
     
@@ -110,10 +109,23 @@
         //$scope.resetForm();
     }
 
+
     $scope.pageChanged = function () {
         getCustomers();
     }
 
+    $scope.changePageSize = function () {
+        $scope.pageIndex = 1;
+
+        getCustomers();
+    };
+
+    $scope.ddlPageSize = [
+        { value: 10, text: "10" },
+        { value: 20, text: "20" },
+        { value: 30, text: "30" }
+    ];
+    
     $scope.getDivisi = function () {
         var request = customerService.GetDivisi($scope.m.id);
 

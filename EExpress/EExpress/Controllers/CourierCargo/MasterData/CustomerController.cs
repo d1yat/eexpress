@@ -22,14 +22,6 @@ namespace EExpress.Controllers.CourierCargo.MasterData
             return View();
         }
 
-        //public JsonResult GetCustomers()
-        //{
-        //    var listCustomer = db.GetCustomers();
-
-        //    return Json(listCustomer, JsonRequestBehavior.AllowGet);
-        //}
-
-        //[HttpGet]
         public JsonResult GetCustomers(int pageIndex, int pageSize)
         {
             var listCustomer = db.GetCustomers(pageIndex, pageSize);

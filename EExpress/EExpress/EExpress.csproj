@@ -189,8 +189,10 @@
     </Compile>
     <Compile Include="Helpers\EnumsHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\City.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerViewModel.cs" />
+    <Compile Include="Models\DbHandlers\CityDbHandler.cs" />
     <Compile Include="Models\DbHandlers\SiteDomainDbHandler.cs" />
     <Compile Include="Models\DbHandlers\PODStatusDbHandler.cs" />
     <Compile Include="Models\DbHandlers\ProductDbHandler.cs" />
@@ -347,10 +349,12 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\EExpress\app.js" />
     <Content Include="Scripts\EExpress\controllers\customerController.js" />
+    <Content Include="Scripts\EExpress\controllers\cityController.js" />
     <Content Include="Scripts\EExpress\controllers\siteDomainController.js" />
     <Content Include="Scripts\EExpress\controllers\podStatusController.js" />
     <Content Include="Scripts\EExpress\controllers\productController.js" />
     <Content Include="Scripts\EExpress\services\customerService.js" />
+    <Content Include="Scripts\EExpress\services\cityService.js" />
     <Content Include="Scripts\EExpress\services\siteDomainService.js" />
     <Content Include="Scripts\EExpress\services\podStatusService.js" />
     <Content Include="Scripts\EExpress\services\productService.js" />
