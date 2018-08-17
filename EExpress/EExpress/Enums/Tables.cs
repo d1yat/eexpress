@@ -17,6 +17,7 @@ namespace EExpress.Enums
         m_domain,
         m_city,
         m_kurir,
-        m_val
+        m_val,
+        m_bank
     }
 }
