@@ -193,6 +193,7 @@
     <Compile Include="Models\Courier.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerViewModel.cs" />
+    <Compile Include="Models\DbHandlers\ValutaDbHandler.cs" />
     <Compile Include="Models\DbHandlers\CourierDbHandler.cs" />
     <Compile Include="Models\DbHandlers\CityDbHandler.cs" />
     <Compile Include="Models\DbHandlers\SiteDomainDbHandler.cs" />
@@ -208,6 +209,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\SiteDomain.cs" />
     <Compile Include="Models\TermInvoice.cs" />
+    <Compile Include="Models\Valuta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\General.cs" />
     <Compile Include="Startup.cs" />
@@ -350,12 +352,14 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\EExpress\app.js" />
+    <Content Include="Scripts\EExpress\controllers\valutaController.js" />
     <Content Include="Scripts\EExpress\controllers\courierController.js" />
     <Content Include="Scripts\EExpress\controllers\customerController.js" />
     <Content Include="Scripts\EExpress\controllers\cityController.js" />
     <Content Include="Scripts\EExpress\controllers\siteDomainController.js" />
     <Content Include="Scripts\EExpress\controllers\podStatusController.js" />
     <Content Include="Scripts\EExpress\controllers\productController.js" />
+    <Content Include="Scripts\EExpress\services\valutaService.js" />
     <Content Include="Scripts\EExpress\services\courierService.js" />
     <Content Include="Scripts\EExpress\services\customerService.js" />
     <Content Include="Scripts\EExpress\services\cityService.js" />
