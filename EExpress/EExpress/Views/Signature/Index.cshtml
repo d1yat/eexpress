@@ -3,81 +3,107 @@
     ViewBag.Title = "Signature";
 }
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">Form Signature</h3>
-            </div>
-            <form class="form-horizontal" role="form">
-                <div class="box-body">
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Tax Sign</label>
-                        <div class="col-md-10">
-                            <input class="form-control" type="text" id="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Finance Sign</label>
-                        <div class="col-md-10">
-                            <input class="form-control" type="text" id="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Payment Desc.</label>
-                        <div class="col-md-10">
-                            <input class="form-control" type="text" id="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Bank Acc Desc.</label>
-                        <div class="col-md-10">
-                            <textarea class="form-control" rows="4"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="box-footer">
-                    <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save</button>
-                    <button class="btn btn-default" type="reset">Cancel</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- /.row -->
-
-<div class="row">
-    <div class="col-md-12">
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">List Signature</h3>
-                <div class="box-tools">
-                    <div class="input-group input-group-sm" style="width: 150px;">
-                        <input class="form-control pull-right" type="text" id="" placeholder="Search">
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box-body table-responsive no-padding">
-                <table class="table table-hover">
-                    <tr>
-                        <th>Tax Sign</th>
-                        <th>Finance Sign</th>
-                        <th>Payment Desc</th>
-                        <th>Bank Acc Desc</th>
-                    </tr>
-                    <tr>
-                        <td>E-Express ID</td>
-                        <td>Akhirudin Sudiyat</td>
-                        <td>L/C</td>
-                        <th>&minus;</th>
-                    </tr>
-                </table>
+<div ng-app="myApp" ng-controller="signatureController">
+    <div class="row" ng-show="message">
+        <div class="col-md-12">
+            <div class="alert alert-info alert-dismissible">
+                <button class="close" type="button" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-info"></i> Alert!</h4>
+                <p>{{message}}</p>
             </div>
         </div>
     </div>
-</div>
-<!-- /.row -->
+    <!-- /.row -->
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Form Signature</h3>
+                </div>
+                <form class="form-horizontal" role="form">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Tax Sign</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="text" id="taxSign" ng-model="m.nmsignpjk">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Finance Sign</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="text" id="financeSign" ng-model="m.nmpjbt">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Payment Desc.</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="text" id="paymentDescription" ng-model="m.paymentx">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Bank Acc Desc.</label>
+                            <div class="col-md-10">
+                                <textarea class="form-control" rows="4" id="bankAccDescription" ng-model="m.bnk"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <button class="btn btn-primary" type="button" ng-click="addEditSignature()"><i class="fa fa-save"></i> Save</button>
+                        <button class="btn btn-default" type="button" ng-click="resetForm()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">List Signature</h3>
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input class="form-control pull-right" type="text" id="tSearch" placeholder="Search" ng-model="tSearch">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Tax Sign</th>
+                                <th>Finance Sign</th>
+                                <th>Payment Desc</th>
+                                <th>Bank Acc Desc</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="signature in listSignature | filter: tSearch" ng-click="getSignatureDetails()" pointer>
+                                <td>{{signature.Tax}}</td>
+                                <td>{{signature.Finance}}</td>
+                                <td>{{signature.PaymentDescription}}</td>
+                                <td>{{signature.BankAccDescription}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/angularjs")
+    @Scripts.Render("~/bundles/angular-ui")
+    <script src="@Url.Content("~/Scripts/site.js")"></script>
+    <script src="@Url.Content("~/Scripts/EExpress/app.js")"></script>
+    <script src="@Url.Content("~/Scripts/EExpress/services/signatureService.js")"></script>
+    <script src="@Url.Content("~/Scripts/EExpress/controllers/signatureController.js")"></script>
+}
