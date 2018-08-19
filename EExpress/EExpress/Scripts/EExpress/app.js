@@ -1,1 +1,3 @@
-﻿var app = angular.module("myApp", ["ui.bootstrap"]);
+﻿/// <reference path="../angular.js" />
+
+var app = angular.module("myApp", ["ui.bootstrap"]);

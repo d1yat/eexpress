@@ -18,6 +18,8 @@ namespace EExpress.Enums
         m_city,
         m_kurir,
         m_val,
-        m_bank
+        m_bank,
+        m_item_kiriman,
+        m_hrg
     }
 }

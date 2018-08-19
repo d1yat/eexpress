@@ -1,0 +1,430 @@
+{\rtf1\ansi\deff0\nouicompat{\fonttbl{\f0\fnil Consolas;}{\f1\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red0\green0\blue0;\red255\green255\blue0;\red0\green0\blue255;\red255\green255\blue255;\red163\green21\blue21;\red128\green0\blue0;\red255\green0\blue0;\red128\green0\blue128;\red0\green100\blue0;}
+{\*\generator Riched20 10.0.15063}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\cf1\highlight2\f0\fs19\lang9 @\cf3\highlight4 using\cf1  EExpress.Enums\par
+\highlight2 @\cf3\highlight4 using\cf1  EExpress.Helpers\par
+\highlight2 @model \highlight4 EExpress.Models.Customer\par
+\highlight2 @\{\highlight4\par
+    ViewBag.Title = \cf5 "Customer"\cf1 ;\par
+\highlight2\}\highlight4\par
+\par
+\cf3 <\cf6 div\cf1  \cf7 ng-app\cf3 ="\cf8 myApp\cf3 "\cf1  \cf7 ng-controller\cf3 ="\cf8 customerCtrl\cf3 ">\cf1\par
+\highlight2 @\cf3\highlight4 if\cf1  (TempData[\cf5 "Success"\cf1 ] != \cf3 null\cf1 )\par
+\{\par
+    \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="row">\cf1\par
+        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-12">\cf1\par
+            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="callout callout-success">\cf1\par
+                \cf3 <\cf6 h4\cf3 ><\cf6 i\cf1  \cf7 class\cf3 ="fa fa-check"></\cf6 i\cf3 >\cf1  Success!\cf3 </\cf6 h4\cf3 >\cf1\par
+                \cf3 <\cf6 p\cf3 >\cf1\highlight2 @(\highlight4 TempData[\cf5 "Success"\cf1 ] \cf3 as\cf1  \cf3 string\cf1\highlight2 )\cf3\highlight4 </\cf6 p\cf3 >\cf1\par
+            \cf3 </\cf6 div\cf3 >\cf1\par
+        \cf3 </\cf6 div\cf3 >\cf1\par
+    \cf3 </\cf6 div\cf3 >\cf1\par
+    \cf9 <!-- /.row -->\cf1\par
+\}\par
+\par
+\cf3 <\cf6 div\cf1  \cf7 class\cf3 ="row">\cf1\par
+    \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-12">\cf1\par
+        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="box box-primary">\cf1\par
+            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="box-header with-border">\cf1\par
+                \cf3 <\cf6 h3\cf1  \cf7 class\cf3 ="box-title">\cf1 Form Customer\cf3 </\cf6 h3\cf3 >\cf1\par
+            \cf3 </\cf6 div\cf3 >\cf1\par
+            \highlight2 @\cf3\highlight4 using\cf1  (Html.BeginForm(\cf5 "AddEditCustomer"\cf1 , \cf5 "Customer"\cf1 , FormMethod.Post, \cf3 new\cf1  \{ @class = \cf5 "form-horizontal"\cf1 , role = \cf5 "form"\cf1 , id = \cf5 "formCustomer"\cf1  \}))\par
+            \{\par
+                \highlight2 @\highlight4 Html.AntiForgeryToken()\par
+                \highlight2 @\highlight4 Html.ValidationSummary(\cf3 true\cf1 , \cf5 ""\cf1 , \cf3 new\cf1  \{ @class = \cf5 "text-danger"\cf1  \})\par
+                \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="box-body">\cf1\par
+                    \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="form-group">\cf1\par
+                        \highlight2 @\highlight4 Html.LabelFor(m => m.custno, \cf3 new\cf1  \{ @class = \cf5 "control-label col-md-2"\cf1  \})\par
+                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-10">\cf1\par
+                            \highlight2 @\highlight4 Html.TextBoxFor(m => m.custno, \cf3 new\cf1  \{ @class = \cf5 "form-control"\cf1  \})\par
+                            \highlight2 @\highlight4 Html.ValidationMessageFor(m => m.custno, \cf5 ""\cf1 , \cf3 new\cf1  \{ @class = \cf5 "text-danger"\cf1  \})\par
+                        \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="form-group">\cf1\par
+                        \highlight2 @\highlight4 Html.LabelFor(m => m.nm, \cf3 new\cf1  \{ @class = \cf5 "control-label col-md-2"\cf1  \})\par
+                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-10">\cf1\par
+                            \highlight2 @\highlight4 Html.TextBoxFor(m => m.nm, \cf3 new\cf1  \{ @class = \cf5 "form-control"\cf1  \})\par
+                            \highlight2 @\highlight4 Html.ValidationMessageFor(m => m.nm, \cf5 ""\cf1 , \cf3 new\cf1  \{ @class = \cf5 "text-danger"\cf1  \})\par
+                        \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="form-group">\cf1\par
+                        \highlight2 @\highlight4 Html.LabelFor(m => m.alm1, \cf3 new\cf1  \{ @class = \cf5 "control-label col-md-2"\cf1  \})\par
+                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-10">\cf1\par
+                            \highlight2 @\highlight4 Html.TextBoxFor(m => m.alm1, \cf3 new\cf1  \{ @class = \cf5 "form-control"\cf1  \})\par
+                            \highlight2 @\highlight4 Html.ValidationMessageFor(m => m.alm1, \cf5 ""\cf1 , \cf3 new\cf1  \{ @class = \cf5 "text-danger"\cf1  \})\par
+                        \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="form-group">\cf1\par
+                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-offset-2 col-md-10">\cf1\par
+                            \highlight2 @\highlight4 Html.TextBoxFor(m => m.alm2, \cf3 new\cf1  \{ @class = \cf5 "form-control"\cf1  \})\par
+                            \highlight2 @\highlight4 Html.ValidationMessageFor(m => m.alm2, \cf5 ""\cf1 , \cf3 new\cf1  \{ @class = \cf5 "text-danger"\cf1  \})\par
+                        \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="form-group">\cf1\par
+                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-offset-2 col-md-10">\cf1\par
+                            \highlight2 @\highlight4 Html.TextBoxFor(m => m.alm3, \cf3 new\cf1  \{ @class = \cf5 "form-control"\cf1  \})\par
+                            \highlight2 @\highlight4 Html.ValidationMessageFor(m => m.alm3, \cf5 ""\cf1 , \cf3 new\cf1  \{ @class = \cf5 "text-danger"\cf1  \})\par
+                        \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="form-group">\cf1\par
+                        \highlight2 @\highlight4 Html.LabelFor(m => m.tlp, \cf3 new\cf1  \{ @class = \cf5 "control-label col-md-2"\cf1  \})\par
+                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-4">\cf1\par
+                            \highlight2 @\highlight4 Html.TextBoxFor(m => m.tlp, \cf3 new\cf1  \{ @class = \cf5 "form-control"\cf1  \})\par
+                            \highlight2 @\highlight4 Html.ValidationMessageFor(m => m.tlp, \cf5 ""\cf1 , \cf3 new\cf1  \{ @class = \cf5 "text-danger"\cf1  \})\par
+                        \cf3 </\cf6 div\cf3 >\cf1\par
+                        \highlight2 @\highlight4 Html.LabelFor(m => m.npwp, \cf3 new\cf1  \{ @class = \cf5 "control-label col-md-2"\cf1  \})\par
+                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-4">\cf1\par
+                            \highlight2 @\highlight4 Html.TextBoxFor(m => m.npwp, \cf3 new\cf1  \{ @class = \cf5 "form-control"\cf1  \})\par
+                            \highlight2 @\highlight4 Html.ValidationMessageFor(m => m.npwp, \cf5 ""\cf1 , \cf3 new\cf1  \{ @class = \cf5 "text-danger"\cf1  \})\par
+                        \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="form-group">\cf1\par
+                        \highlight2 @\highlight4 Html.LabelFor(m => m.ct_person, \cf3 new\cf1  \{ @class = \cf5 "control-label col-md-2"\cf1  \})\par
+                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-10">\cf1\par
+                            \highlight2 @\highlight4 Html.TextBoxFor(m => m.ct_person, \cf3 new\cf1  \{ @class = \cf5 "form-control"\cf1  \})\par
+                            \highlight2 @\highlight4 Html.ValidationMessageFor(m => m.ct_person, \cf5 ""\cf1 , \cf3 new\cf1  \{ @class = \cf5 "text-danger"\cf1  \})\par
+                        \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="form-group">\cf1\par
+                        \highlight2 @\highlight4 Html.LabelFor(m => m.statusx, \cf3 new\cf1  \{ @class = \cf5 "control-label col-md-2"\cf1  \})\par
+                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-10">\cf1\par
+                            \highlight2 @\highlight4 Html.DropDownListFor(m => m.statusx, EnumsHelper.GetSelectedListItem<Status>(), \cf5 "Please Select"\cf1 , \cf3 new\cf1  \{ @class = \cf5 "form-control"\cf1  \})\par
+                            \highlight2 @\highlight4 Html.ValidationMessageFor(m => m.statusx, \cf5 ""\cf1 , \cf3 new\cf1  \{ @class = \cf5 "text-danger"\cf1  \})\par
+                        \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="form-group">\cf1\par
+                        \highlight2 @\highlight4 Html.LabelFor(m => m.ctk_hrg, \cf3 new\cf1  \{ @class = \cf5 "control-label col-md-2"\cf1  \})\par
+                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-10">\cf1\par
+                            \highlight2 @\highlight4 Html.DropDownListFor(m => m.ctk_hrg, EnumsHelper.GetSelectedListItem<CetakHarga>(), \cf5 "Please Select"\cf1 , \cf3 new\cf1  \{ @class = \cf5 "form-control"\cf1  \})\par
+                            \highlight2 @\highlight4 Html.ValidationMessageFor(m => m.ctk_hrg, \cf5 ""\cf1 , \cf3 new\cf1  \{ @class = \cf5 "text-danger"\cf1  \})\par
+                        \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="form-group">\cf1\par
+                        \highlight2 @\highlight4 Html.LabelFor(m => m.k_payment, \cf3 new\cf1  \{ @class = \cf5 "control-label col-md-2"\cf1  \})\par
+                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-10">\cf1\par
+                            \highlight2 @\highlight4 Html.DropDownListFor(m => m.k_payment, EnumsHelper.GetSelectedListItem<Payment>(), \cf5 "Please Select"\cf1 , \cf3 new\cf1  \{ @class = \cf5 "form-control"\cf1  \})\par
+                            \highlight2 @\highlight4 Html.ValidationMessageFor(m => m.k_payment, \cf5 ""\cf1 , \cf3 new\cf1  \{ @class = \cf5 "text-danger"\cf1  \})\par
+                        \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="form-group">\cf1\par
+                        \highlight2 @\highlight4 Html.LabelFor(m => m.hrgkhs, \cf3 new\cf1  \{ @class = \cf5 "control-label col-md-2"\cf1  \})\par
+                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-10">\cf1\par
+                            \highlight2 @\highlight4 Html.DropDownListFor(m => m.hrgkhs, EnumsHelper.GetSelectedListItem<HargaKhusus>(), \cf5 "Please Select"\cf1 , \cf3 new\cf1  \{ @class = \cf5 "form-control"\cf1  \})\par
+                            \highlight2 @\highlight4 Html.ValidationMessageFor(m => m.hrgkhs, \cf5 ""\cf1 , \cf3 new\cf1  \{ @class = \cf5 "text-danger"\cf1  \})\par
+                        \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="form-group">\cf1\par
+                        \highlight2 @\highlight4 Html.LabelFor(m => m.cetak_penerima, \cf3 new\cf1  \{ @class = \cf5 "control-label col-md-2"\cf1  \})\par
+                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-10">\cf1\par
+                            \highlight2 @\highlight4 Html.DropDownListFor(m => m.cetak_penerima, EnumsHelper.GetSelectedListItem<CetakPenerima>(), \cf5 "Please Select"\cf1 , \cf3 new\cf1  \{ @class = \cf5 "form-control"\cf1  \})\par
+                            \highlight2 @\highlight4 Html.ValidationMessageFor(m => m.cetak_penerima, \cf5 ""\cf1 , \cf3 new\cf1  \{ @class = \cf5 "text-danger"\cf1  \})\par
+                        \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="form-group">\cf1\par
+                        \highlight2 @\highlight4 Html.LabelFor(m => m.hrgspecial, \cf3 new\cf1  \{ @class = \cf5 "control-label col-md-2"\cf1  \})\par
+                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-10">\cf1\par
+                            \highlight2 @\highlight4 Html.DropDownListFor(m => m.hrgspecial, EnumsHelper.GetSelectedListItem<HargaSpecial>(), \cf5 "Please Select"\cf1 , \cf3 new\cf1  \{ @class = \cf5 "form-control"\cf1  \})\par
+                            \highlight2 @\highlight4 Html.ValidationMessageFor(m => m.hrgspecial, \cf5 ""\cf1 , \cf3 new\cf1  \{ @class = \cf5 "text-danger"\cf1  \})\par
+                        \cf3 </\cf6 div\cf3 >\cf1\par
+                    \cf3 </\cf6 div\cf3 >\cf1\par
+                \cf3 </\cf6 div\cf3 >\cf1\par
+                \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="box-footer">\cf1\par
+                    \cf3 <\cf6 button\cf1  \cf7 class\cf3 ="btn btn-primary"\cf1  \cf7 type\cf3 ="submit"\cf1  \cf7 ng-click\cf3 ="\cf8 addCustomer\cf1 ()\cf3 "><\cf6 i\cf1  \cf7 class\cf3 ="fa fa-save"></\cf6 i\cf3 >\cf1  Save\cf3 </\cf6 button\cf3 >\cf1\par
+                    \cf3 <\cf6 button\cf1  \cf7 class\cf3 ="btn btn-default"\cf1  \cf7 type\cf3 ="reset"\cf1  \cf7 id\cf3 ="btnCancel">\cf1 Cancel\cf3 </\cf6 button\cf3 >\cf1\par
+                    \cf3 <\cf6 button\cf1  \cf7 class\cf3 ="btn btn-default"\cf1  \cf7 type\cf3 ="button"\cf1  \cf7 data-toggle\cf3 ="modal"\cf1  \cf7 data-target\cf3 ="#termInvoice">\cf1 Term Invoice\cf3 </\cf6 button\cf3 >\cf1\par
+                    \cf3 <\cf6 button\cf1  \cf7 class\cf3 ="btn btn-default"\cf1  \cf7 type\cf3 ="button"\cf1  \cf7 data-toggle\cf3 ="modal"\cf1  \cf7 data-target\cf3 ="#divisi">\cf1 Divisi / Seksi\cf3 </\cf6 button\cf3 >\cf1\par
+                    \cf3 <\cf6 button\cf1  \cf7 class\cf3 ="btn btn-info pull-right"\cf1  \cf7 type\cf3 ="button"\cf1  \cf7 data-toggle\cf3 ="modal"\cf1  \cf7 data-target\cf3 ="#tarif"><\cf6 i\cf1  \cf7 class\cf3 ="fa fa-folder-open-o"></\cf6 i\cf3 >\cf1  Tarif\cf3 </\cf6 button\cf3 >\cf1\par
+                \cf3 </\cf6 div\cf3 >\cf1\par
+\par
+            \}\par
+\par
+            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="modal fade"\cf1  \cf7 id\cf3 ="termInvoice"\cf1  \cf7 role\cf3 ="dialog"\cf1  \cf7 aria-hidden\cf3 ="true">\cf1\par
+                \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="modal-dialog modal-lg">\cf1\par
+                    \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="modal-content">\cf1\par
+                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="modal-header">\cf1\par
+                            \cf3 <\cf6 button\cf1  \cf7 class\cf3 ="close"\cf1  \cf7 type\cf3 ="button"\cf1  \cf7 data-dismiss\cf3 ="modal"\cf1  \cf7 aria-hidden\cf3 ="true"\cf1  \cf7 aria-label\cf3 ="Close"><\cf6 span\cf1  \cf7 aria-hidden\cf3 ="true">\cf7 &times;\cf3 </\cf6 span\cf3 ></\cf6 button\cf3 >\cf1\par
+                            \cf3 <\cf6 h4\cf1  \cf7 class\cf3 ="modal-title">\cf1 Term Invoice\cf3 </\cf6 h4\cf3 >\cf1\par
+                        \cf3 </\cf6 div\cf3 >\cf1\par
+                        \cf3 <\cf6 form\cf1  \cf7 class\cf3 ="form-horizontal"\cf1  \cf7 role\cf3 ="form">\cf1\par
+                            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="modal-body">\cf1\par
+                                \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="row">\cf1\par
+                                    \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-12">\cf1\par
+                                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="form-group">\cf1\par
+                                            \cf3 <\cf6 label\cf1  \cf7 class\cf3 ="control-label col-md-2">\cf1 Customer Id\cf3 </\cf6 label\cf3 >\cf1\par
+                                            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-10">\cf1\par
+                                                \cf3 <\cf6 input\cf1  \cf7 class\cf3 ="form-control"\cf1  \cf7 type\cf3 ="text"\cf1  \cf7 id\cf3 ="customerId">\cf1\par
+                                            \cf3 </\cf6 div\cf3 >\cf1\par
+                                        \cf3 </\cf6 div\cf3 >\cf1\par
+                                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="form-group">\cf1\par
+                                            \cf3 <\cf6 label\cf1  \cf7 class\cf3 ="control-label col-md-2">\cf1 Customer Name\cf3 </\cf6 label\cf3 >\cf1\par
+                                            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-10">\cf1\par
+                                                \cf3 <\cf6 input\cf1  \cf7 class\cf3 ="form-control"\cf1  \cf7 type\cf3 ="text"\cf1  \cf7 id\cf3 ="customerName">\cf1\par
+                                            \cf3 </\cf6 div\cf3 >\cf1\par
+                                        \cf3 </\cf6 div\cf3 >\cf1\par
+                                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="form-group">\cf1\par
+                                            \cf3 <\cf6 label\cf1  \cf7 class\cf3 ="control-label col-md-2">\cf1 Term\cf3 </\cf6 label\cf3 >\cf1\par
+                                            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-5">\cf1\par
+                                                \cf3 <\cf6 input\cf1  \cf7 class\cf3 ="form-control"\cf1  \cf7 type\cf3 ="text"\cf1  \cf7 id\cf3 ="term">\cf1\par
+                                            \cf3 </\cf6 div\cf3 >\cf1\par
+                                            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-5">\cf1\par
+                                                \cf3 <\cf6 select\cf1  \cf7 class\cf3 ="form-control">\cf1\par
+                                                    \cf3 <\cf6 option\cf1  \cf7 value\cf3 ="">\cf1 Please Select\cf3 </\cf6 option\cf3 >\cf1\par
+                                                    \cf3 <\cf6 option\cf1  \cf7 value\cf3 ="1">\cf1 Hari\cf3 </\cf6 option\cf3 >\cf1\par
+                                                    \cf3 <\cf6 option\cf1  \cf7 value\cf3 ="2">\cf1 Bulan\cf3 </\cf6 option\cf3 >\cf1\par
+                                                    \cf3 <\cf6 option\cf1  \cf7 value\cf3 ="3">\cf1 Tahun\cf3 </\cf6 option\cf3 >\cf1\par
+                                                \cf3 </\cf6 select\cf3 >\cf1\par
+                                            \cf3 </\cf6 div\cf3 >\cf1\par
+                                        \cf3 </\cf6 div\cf3 >\cf1\par
+                                    \cf3 </\cf6 div\cf3 >\cf1\par
+                                \cf3 </\cf6 div\cf3 >\cf1\par
+                                \cf9 <!-- /.row -->\cf1\par
+                                \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="row">\cf1\par
+                                    \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-12">\cf1\par
+                                        \cf3 <\cf6 table\cf1  \cf7 class\cf3 ="table table-hover">\cf1\par
+                                            \cf3 <\cf6 thead\cf3 >\cf1\par
+                                                \cf3 <\cf6 tr\cf3 >\cf1\par
+                                                    \cf3 <\cf6 th\cf3 >\cf1 Customer Id\cf3 </\cf6 th\cf3 >\cf1\par
+                                                    \cf3 <\cf6 th\cf3 >\cf1 Customer Name\cf3 </\cf6 th\cf3 >\cf1\par
+                                                    \cf3 <\cf6 th\cf3 >\cf1 Term\cf3 </\cf6 th\cf3 >\cf1\par
+                                                \cf3 </\cf6 tr\cf3 >\cf1\par
+                                            \cf3 </\cf6 thead\cf3 >\cf1\par
+                                            \cf3 <\cf6 tbody\cf3 >\cf1\par
+                                                \cf3 <\cf6 tr\cf3 >\cf1\par
+                                                    \cf3 <\cf6 td\cf3 >\cf1 CGK1\cf3 </\cf6 td\cf3 >\cf1\par
+                                                    \cf3 <\cf6 td\cf3 >\cf1 PT MITRA ARTISTIKA CIPTA\cf3 </\cf6 td\cf3 >\cf1\par
+                                                    \cf3 <\cf6 td\cf3 >\cf1 1 Bulan\cf3 </\cf6 td\cf3 >\cf1\par
+                                                \cf3 </\cf6 tr\cf3 >\cf1\par
+                                            \cf3 </\cf6 tbody\cf3 >\cf1\par
+                                        \cf3 </\cf6 table\cf3 >\cf1\par
+                                    \cf3 </\cf6 div\cf3 >\cf1\par
+                                \cf3 </\cf6 div\cf3 >\cf1\par
+                                \cf9 <!-- /.row -->\cf1\par
+                            \cf3 </\cf6 div\cf3 >\cf1\par
+                            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="modal-footer">\cf1\par
+                                \cf3 <\cf6 button\cf1  \cf7 class\cf3 ="btn btn-default pull-left"\cf1  \cf7 type\cf3 ="button"\cf1  \cf7 data-dismiss\cf3 ="modal"><\cf6 i\cf1  \cf7 class\cf3 ="fa fa-close"></\cf6 i\cf3 >\cf1  Close\cf3 </\cf6 button\cf3 >\cf1\par
+                                \cf3 <\cf6 button\cf1  \cf7 class\cf3 ="btn btn-primary"\cf1  \cf7 type\cf3 ="button"><\cf6 i\cf1  \cf7 class\cf3 ="fa fa-save"></\cf6 i\cf3 >\cf1  Save\cf3 </\cf6 button\cf3 >\cf1\par
+                                \cf3 <\cf6 button\cf1  \cf7 class\cf3 ="btn btn-default"\cf1  \cf7 type\cf3 ="reset">\cf1 Cancel\cf3 </\cf6 button\cf3 >\cf1\par
+                            \cf3 </\cf6 div\cf3 >\cf1\par
+                        \cf3 </\cf6 form\cf3 >\cf1\par
+                    \cf3 </\cf6 div\cf3 >\cf1\par
+                \cf3 </\cf6 div\cf3 >\cf1\par
+            \cf3 </\cf6 div\cf3 >\cf1\par
+\par
+            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="modal fade"\cf1  \cf7 id\cf3 ="divisi"\cf1  \cf7 role\cf3 ="dialog"\cf1  \cf7 aria-hidden\cf3 ="true">\cf1\par
+                \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="modal-dialog modal-lg">\cf1\par
+                    \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="modal-content">\cf1\par
+                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="modal-header">\cf1\par
+                            \cf3 <\cf6 button\cf1  \cf7 class\cf3 ="close"\cf1  \cf7 type\cf3 ="button"\cf1  \cf7 data-dismiss\cf3 ="modal"\cf1  \cf7 aria-hidden\cf3 ="true"\cf1  \cf7 aria-label\cf3 ="Close"><\cf6 span\cf1  \cf7 aria-hidden\cf3 ="true">\cf7 &times;\cf3 </\cf6 span\cf3 ></\cf6 button\cf3 >\cf1\par
+                            \cf3 <\cf6 h4\cf1  \cf7 class\cf3 ="modal-title">\cf1 Divisi / Seksi\cf3 </\cf6 h4\cf3 >\cf1\par
+                        \cf3 </\cf6 div\cf3 >\cf1\par
+                        \cf3 <\cf6 form\cf1  \cf7 class\cf3 ="form-horizontal"\cf1  \cf7 role\cf3 ="form">\cf1\par
+                            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="modal-body">\cf1\par
+                                \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="row">\cf1\par
+                                    \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-12">\cf1\par
+                                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="form-group">\cf1\par
+                                            \cf3 <\cf6 label\cf1  \cf7 class\cf3 ="control-label col-md-2">\cf1 Customer Id\cf3 </\cf6 label\cf3 >\cf1\par
+                                            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-4">\cf1\par
+                                                \cf3 <\cf6 input\cf1  \cf7 class\cf3 ="form-control"\cf1  \cf7 type\cf3 ="text"\cf1  \cf7 id\cf3 ="customerId">\cf1\par
+                                            \cf3 </\cf6 div\cf3 >\cf1\par
+                                            \cf3 <\cf6 label\cf1  \cf7 class\cf3 ="control-label col-md-2">\cf1 Divisi Id\cf3 </\cf6 label\cf3 >\cf1\par
+                                            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-4">\cf1\par
+                                                \cf3 <\cf6 input\cf1  \cf7 class\cf3 ="form-control"\cf1  \cf7 type\cf3 ="text"\cf1  \cf7 id\cf3 ="divisiId">\cf1\par
+                                            \cf3 </\cf6 div\cf3 >\cf1\par
+                                        \cf3 </\cf6 div\cf3 >\cf1\par
+                                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="form-group">\cf1\par
+                                            \cf3 <\cf6 label\cf1  \cf7 class\cf3 ="control-label col-md-2">\cf1 Divisi Name\cf3 </\cf6 label\cf3 >\cf1\par
+                                            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-10">\cf1\par
+                                                \cf3 <\cf6 input\cf1  \cf7 class\cf3 ="form-control"\cf1  \cf7 type\cf3 ="text"\cf1  \cf7 id\cf3 ="divisiName">\cf1\par
+                                            \cf3 </\cf6 div\cf3 >\cf1\par
+                                        \cf3 </\cf6 div\cf3 >\cf1\par
+                                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="form-group">\cf1\par
+                                            \cf3 <\cf6 label\cf1  \cf7 class\cf3 ="control-label col-md-2">\cf1 Alamat\cf3 </\cf6 label\cf3 >\cf1\par
+                                            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-10">\cf1\par
+                                                \cf3 <\cf6 input\cf1  \cf7 class\cf3 ="form-control"\cf1  \cf7 type\cf3 ="text"\cf1  \cf7 id\cf3 ="alamat1">\cf1\par
+                                            \cf3 </\cf6 div\cf3 >\cf1\par
+                                        \cf3 </\cf6 div\cf3 >\cf1\par
+                                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="form-group">\cf1\par
+                                            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-offset-2 col-md-10">\cf1\par
+                                                \cf3 <\cf6 input\cf1  \cf7 class\cf3 ="form-control"\cf1  \cf7 type\cf3 ="text"\cf1  \cf7 id\cf3 ="alamat2">\cf1\par
+                                            \cf3 </\cf6 div\cf3 >\cf1\par
+                                        \cf3 </\cf6 div\cf3 >\cf1\par
+                                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="form-group">\cf1\par
+                                            \cf3 <\cf6 label\cf1  \cf7 class\cf3 ="control-label col-md-2">\cf1 Telp\cf3 </\cf6 label\cf3 >\cf1\par
+                                            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-10">\cf1\par
+                                                \cf3 <\cf6 input\cf1  \cf7 class\cf3 ="form-control"\cf1  \cf7 type\cf3 ="text"\cf1  \cf7 id\cf3 ="telp">\cf1\par
+                                            \cf3 </\cf6 div\cf3 >\cf1\par
+                                        \cf3 </\cf6 div\cf3 >\cf1\par
+                                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="form-group">\cf1\par
+                                            \cf3 <\cf6 label\cf1  \cf7 class\cf3 ="control-label col-md-2">\cf1 Contact Person\cf3 </\cf6 label\cf3 >\cf1\par
+                                            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-10">\cf1\par
+                                                \cf3 <\cf6 input\cf1  \cf7 class\cf3 ="form-control"\cf1  \cf7 type\cf3 ="text"\cf1  \cf7 id\cf3 ="customerName">\cf1\par
+                                            \cf3 </\cf6 div\cf3 >\cf1\par
+                                        \cf3 </\cf6 div\cf3 >\cf1\par
+                                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="form-group">\cf1\par
+                                            \cf3 <\cf6 label\cf1  \cf7 class\cf3 ="control-label col-md-2">\cf1 Status\cf3 </\cf6 label\cf3 >\cf1\par
+                                            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-10">\cf1\par
+                                                \cf3 <\cf6 select\cf1  \cf7 class\cf3 ="form-control"\cf1  \cf7 id\cf3 ="status">\cf1\par
+                                                    \cf3 <\cf6 option\cf1  \cf7 value\cf3 ="">\cf1 Please Select\cf3 </\cf6 option\cf3 >\cf1\par
+                                                    \cf3 <\cf6 option\cf1  \cf7 value\cf3 ="0">\cf1 Deactivate\cf3 </\cf6 option\cf3 >\cf1\par
+                                                    \cf3 <\cf6 option\cf1  \cf7 value\cf3 ="1">\cf1 Activate\cf3 </\cf6 option\cf3 >\cf1\par
+                                                \cf3 </\cf6 select\cf3 >\cf1\par
+                                            \cf3 </\cf6 div\cf3 >\cf1\par
+                                        \cf3 </\cf6 div\cf3 >\cf1\par
+                                    \cf3 </\cf6 div\cf3 >\cf1\par
+                                \cf3 </\cf6 div\cf3 >\cf1\par
+                                \cf9 <!-- /.row -->\cf1\par
+                                \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="row">\cf1\par
+                                    \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-12">\cf1\par
+                                        \cf3 <\cf6 table\cf1  \cf7 class\cf3 ="table table-hover">\cf1\par
+                                            \cf3 <\cf6 thead\cf3 >\cf1\par
+                                                \cf3 <\cf6 tr\cf3 >\cf1\par
+                                                    \cf3 <\cf6 th\cf3 >\cf1 Customer Id\cf3 </\cf6 th\cf3 >\cf1\par
+                                                    \cf3 <\cf6 th\cf3 >\cf1 Divisi Id\cf3 </\cf6 th\cf3 >\cf1\par
+                                                    \cf3 <\cf6 th\cf3 >\cf1 Divisi Name\cf3 </\cf6 th\cf3 >\cf1\par
+                                                    \cf3 <\cf6 th\cf3 >\cf1 Alamat\cf3 </\cf6 th\cf3 >\cf1\par
+                                                    \cf3 <\cf6 th\cf3 >\cf1 Telp\cf3 </\cf6 th\cf3 >\cf1\par
+                                                    \cf3 <\cf6 th\cf3 >\cf1 Contact Person\cf3 </\cf6 th\cf3 >\cf1\par
+                                                    \cf3 <\cf6 th\cf3 >\cf1 Status\cf3 </\cf6 th\cf3 >\cf1\par
+                                                \cf3 </\cf6 tr\cf3 >\cf1\par
+                                            \cf3 </\cf6 thead\cf3 >\cf1\par
+                                            \cf3 <\cf6 tbody\cf3 >\cf1\par
+                                                \cf3 <\cf6 tr\cf3 >\cf1\par
+                                                    \cf3 <\cf6 td\cf3 >\cf1 Some Text\cf3 </\cf6 td\cf3 >\cf1\par
+                                                    \cf3 <\cf6 td\cf3 >\cf1 Some Text\cf3 </\cf6 td\cf3 >\cf1\par
+                                                    \cf3 <\cf6 td\cf3 >\cf1 Some Text\cf3 </\cf6 td\cf3 >\cf1\par
+                                                    \cf3 <\cf6 td\cf3 >\cf1 Some Text\cf3 </\cf6 td\cf3 >\cf1\par
+                                                    \cf3 <\cf6 td\cf3 >\cf1 Some Text\cf3 </\cf6 td\cf3 >\cf1\par
+                                                    \cf3 <\cf6 td\cf3 >\cf1 Some Text\cf3 </\cf6 td\cf3 >\cf1\par
+                                                    \cf3 <\cf6 td\cf3 >\cf1 Some Text\cf3 </\cf6 td\cf3 >\cf1\par
+                                                \cf3 </\cf6 tr\cf3 >\cf1\par
+                                            \cf3 </\cf6 tbody\cf3 >\cf1\par
+                                        \cf3 </\cf6 table\cf3 >\cf1\par
+                                    \cf3 </\cf6 div\cf3 >\cf1\par
+                                \cf3 </\cf6 div\cf3 >\cf1\par
+                                \cf9 <!-- /.row -->\cf1\par
+                            \cf3 </\cf6 div\cf3 >\cf1\par
+                            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="modal-footer">\cf1\par
+                                \cf3 <\cf6 button\cf1  \cf7 class\cf3 ="btn btn-default pull-left"\cf1  \cf7 type\cf3 ="button"\cf1  \cf7 data-dismiss\cf3 ="modal"><\cf6 i\cf1  \cf7 class\cf3 ="fa fa-close"></\cf6 i\cf3 >\cf1  Close\cf3 </\cf6 button\cf3 >\cf1\par
+                                \cf3 <\cf6 button\cf1  \cf7 class\cf3 ="btn btn-primary"\cf1  \cf7 type\cf3 ="button"><\cf6 i\cf1  \cf7 class\cf3 ="fa fa-save"></\cf6 i\cf3 >\cf1  Save\cf3 </\cf6 button\cf3 >\cf1\par
+                                \cf3 <\cf6 button\cf1  \cf7 class\cf3 ="btn btn-default"\cf1  \cf7 type\cf3 ="reset">\cf1 Cancel\cf3 </\cf6 button\cf3 >\cf1\par
+                            \cf3 </\cf6 div\cf3 >\cf1\par
+                        \cf3 </\cf6 form\cf3 >\cf1\par
+                    \cf3 </\cf6 div\cf3 >\cf1\par
+                \cf3 </\cf6 div\cf3 >\cf1\par
+            \cf3 </\cf6 div\cf3 >\cf1\par
+\par
+            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="modal fade"\cf1  \cf7 id\cf3 ="tarif"\cf1  \cf7 role\cf3 ="dialog"\cf1  \cf7 aria-hidden\cf3 ="true">\cf1\par
+                \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="modal-dialog modal-lg">\cf1\par
+                    \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="modal-content">\cf1\par
+                        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="modal-header">\cf1\par
+                            \cf3 <\cf6 button\cf1  \cf7 class\cf3 ="close"\cf1  \cf7 type\cf3 ="button"\cf1  \cf7 data-dismiss\cf3 ="modal"\cf1  \cf7 aria-hidden\cf3 ="true"\cf1  \cf7 aria-label\cf3 ="Close"><\cf6 span\cf1  \cf7 aria-hidden\cf3 ="true">\cf7 &times;\cf3 </\cf6 span\cf3 ></\cf6 button\cf3 >\cf1\par
+                            \cf3 <\cf6 h4\cf1  \cf7 class\cf3 ="modal-title">\cf1 Tarif\cf3 </\cf6 h4\cf3 >\cf1\par
+                        \cf3 </\cf6 div\cf3 >\cf1\par
+                        \cf3 <\cf6 form\cf1  \cf7 class\cf3 ="form-horizontal"\cf1  \cf7 role\cf3 ="form">\cf1\par
+                            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="modal-body">\cf1\par
+                                \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="row">\cf1\par
+                                    \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-12">\cf1\par
+                                        \highlight2 @\highlight4 Html.Partial(\cf5 "~/Views/Shared/Tarif.cshtml"\cf1 )\par
+                                    \cf3 </\cf6 div\cf3 >\cf1\par
+                                \cf3 </\cf6 div\cf3 >\cf1\par
+                                \cf9 <!-- /.row -->\cf1\par
+                                \highlight2 @*\cf9\highlight4 <div class="row">\par
+                                        <div class="col-md-12">\par
+                                            <table class="table table-hover">\par
+                                                <thead>\par
+                                                    <tr>\par
+                                                        <th>Customer Id</th>\par
+                                                        <th>Divisi Id</th>\par
+                                                        <th>Divisi Name</th>\par
+                                                        <th>Alamat</th>\par
+                                                        <th>Telp</th>\par
+                                                        <th>Contact Person</th>\par
+                                                        <th>Status</th>\par
+                                                    </tr>\par
+                                                </thead>\par
+                                                <tbody>\par
+                                                    <tr>\par
+                                                        <td>Some Text</td>\par
+                                                        <td>Some Text</td>\par
+                                                        <td>Some Text</td>\par
+                                                        <td>Some Text</td>\par
+                                                        <td>Some Text</td>\par
+                                                        <td>Some Text</td>\par
+                                                        <td>Some Text</td>\par
+                                                    </tr>\par
+                                                </tbody>\par
+                                            </table>\par
+                                        </div>\par
+                                    </div>\cf1\highlight2 *@\highlight4\par
+                                \cf9 <!-- /.row -->\cf1\par
+                            \cf3 </\cf6 div\cf3 >\cf1\par
+                            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="modal-footer">\cf1\par
+                                \cf3 <\cf6 button\cf1  \cf7 class\cf3 ="btn btn-default pull-left"\cf1  \cf7 type\cf3 ="button"\cf1  \cf7 data-dismiss\cf3 ="modal"><\cf6 i\cf1  \cf7 class\cf3 ="fa fa-close"></\cf6 i\cf3 >\cf1  Close\cf3 </\cf6 button\cf3 >\cf1\par
+                                \cf3 <\cf6 button\cf1  \cf7 class\cf3 ="btn btn-primary"\cf1  \cf7 type\cf3 ="button"><\cf6 i\cf1  \cf7 class\cf3 ="fa fa-save"></\cf6 i\cf3 >\cf1  Save\cf3 </\cf6 button\cf3 >\cf1\par
+                                \cf3 <\cf6 button\cf1  \cf7 class\cf3 ="btn btn-default"\cf1  \cf7 type\cf3 ="reset">\cf1 Cancel\cf3 </\cf6 button\cf3 >\cf1\par
+                            \cf3 </\cf6 div\cf3 >\cf1\par
+                        \cf3 </\cf6 form\cf3 >\cf1\par
+                    \cf3 </\cf6 div\cf3 >\cf1\par
+                \cf3 </\cf6 div\cf3 >\cf1\par
+            \cf3 </\cf6 div\cf3 >\cf1\par
+\par
+        \cf3 </\cf6 div\cf3 >\cf1\par
+    \cf3 </\cf6 div\cf3 >\cf1\par
+\cf3 </\cf6 div\cf3 >\cf1\par
+\cf9 <!-- /.row -->\cf1\par
+\par
+\cf3 <\cf6 div\cf1  \cf7 class\cf3 ="row">\cf1\par
+    \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="col-md-12">\cf1\par
+        \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="box">\cf1\par
+            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="box-header">\cf1\par
+                \cf3 <\cf6 h3\cf1  \cf7 class\cf3 ="box-title">\cf1 List Customer\cf3 </\cf6 h3\cf3 >\cf1\par
+                \highlight2 @*\cf9\highlight4 <button class="btn btn-default pull-right" type="button"><i class="fa fa-refresh"></i> Refresh</button>\cf1\highlight2 *@\highlight4\par
+            \cf3 </\cf6 div\cf3 >\cf1\par
+            \cf3 <\cf6 div\cf1  \cf7 class\cf3 ="box-body table-responsive no-padding">\cf1\par
+                \cf3 <\cf6 table\cf1  \cf7 class\cf3 ="table table-hover">\cf1\par
+                    \cf3 <\cf6 thead\cf3 >\cf1\par
+                        \cf3 <\cf6 tr\cf3 >\cf1\par
+                            \cf3 <\cf6 th\cf3 >\cf1 Customer Id\cf3 </\cf6 th\cf3 >\cf1\par
+                            \cf3 <\cf6 th\cf3 >\cf1 Customer Name\cf3 </\cf6 th\cf3 >\cf1\par
+                            \cf3 <\cf6 th\cf3 >\cf1 Status\cf3 </\cf6 th\cf3 >\cf1\par
+                            \cf3 <\cf6 th\cf3 >\cf1 Action\cf3 </\cf6 th\cf3 >\cf1\par
+                        \cf3 </\cf6 tr\cf3 >\cf1\par
+                    \cf3 </\cf6 thead\cf3 >\cf1\par
+                    \cf3 <\cf6 tbody\cf3 >\cf1\par
+                        \cf3 <\cf6 tr\cf1  \cf7 ng-repeat\cf3 ="\cf8 c\cf3  \cf9\b in\cf3\b0  \cf8 customers\cf3 ">\cf1\par
+                            \cf3 <\cf6 td\cf3 >\cf1\b\{\{\cf8\b0 c.custno\cf1\b\}\}\cf3\b0 </\cf6 td\cf3 >\cf1\par
+                            \cf3 <\cf6 td\cf3 >\cf1\b\{\{\cf8\b0 c.nm\cf1\b\}\}\cf3\b0 </\cf6 td\cf3 >\cf1\par
+                            \cf3 <\cf6 td\cf3 ><\cf6 span\cf1  \cf7 class\cf3 ="label label-default">\cf1\b\{\{\cf8\b0 c.statusx\cf1  \cf8 ===\cf1  \cf8 0\cf1  \cf8 ?\cf1  \cf8 "Deactivate"\cf1  \cf8 :\cf1  \cf8 "Activate"\cf1\b\}\}\cf3\b0 </\cf6 span\cf3 ></\cf6 td\cf3 >\cf1\par
+                            \cf3 <\cf6 td\cf3 >\cf1\par
+                                \cf3 <\cf6 button\cf1  \cf7 class\cf3 ="btn btn-default"\cf1  \cf7 type\cf3 ="button"\cf1  \cf7 ng-click\cf3 ="\cf8 getCustomerById\cf1 (\cf8 c.custno\cf1 )\cf3 ">\cf1\par
+                                    \cf3 <\cf6 i\cf1  \cf7 class\cf3 ="fa fa-pencil"></\cf6 i\cf3 >\cf1\par
+                                \cf3 </\cf6 button\cf3 >\cf1\par
+                                \cf3 <\cf6 button\cf1  \cf7 class\cf3 ="btn btn-default"\cf1  \cf7 type\cf3 ="button"\cf1  \cf7 ng-click\cf3 ="\cf8 getCustomers\cf1 ()\cf3 ">\cf1\par
+                                    \cf3 <\cf6 i\cf1  \cf7 class\cf3 ="fa fa-refresh"></\cf6 i\cf3 >\cf1\par
+                                \cf3 </\cf6 button\cf3 >\cf1\par
+                                \cf3 <\cf6 button\cf1  \cf7 class\cf3 ="btn btn-default"\cf1  \cf7 type\cf3 ="button">\cf1\par
+                                    \cf3 <\cf6 i\cf1  \cf7 class\cf3 ="fa fa-trash"></\cf6 i\cf3 >\cf1\par
+                                \cf3 </\cf6 button\cf3 >\cf1\par
+                            \cf3 </\cf6 td\cf3 >\cf1\par
+                        \cf3 </\cf6 tr\cf3 >\cf1\par
+                    \cf3 </\cf6 tbody\cf3 >\cf1\par
+                \cf3 </\cf6 table\cf3 >\cf1\par
+            \cf3 </\cf6 div\cf3 >\cf1\par
+            \cf9 <!-- /.box-body -->\cf1\par
+        \cf3 </\cf6 div\cf3 >\cf1\par
+    \cf3 </\cf6 div\cf3 >\cf1\par
+\cf3 </\cf6 div\cf3 >\cf1\par
+\cf9 <!-- /.row -->\cf1\par
+\cf3 </\cf6 div\cf3 >\cf1\par
+\par
+\highlight2 @section Scripts \{\highlight4\par
+\highlight2 @\highlight4 Scripts.Render(\cf5 "~/bundles/jqueryval"\cf1 )\par
+\cf3 <\cf6 script\cf1  \cf7 src\cf3 ="\cf1\highlight2 @\highlight4 Url.Content(\cf5 "~/Scripts/angular.js"\cf1 )\cf3 "></\cf6 script\cf3 >\cf1\par
+\cf3 <\cf6 script\cf1  \cf7 src\cf3 ="\cf1\highlight2 @\highlight4 Url.Content(\cf5 "~/Scripts/angular-route.js"\cf1 )\cf3 "></\cf6 script\cf3 >\cf1\par
+\cf3 <\cf6 script\cf1  \cf7 src\cf3 ="\cf1\highlight2 @\highlight4 Url.Content(\cf5 "~/Scripts/module.js"\cf1 )\cf3 "></\cf6 script\cf3 >\cf1\par
+\cf3 <\cf6 script\cf1  \cf7 src\cf3 ="\cf1\highlight2 @\highlight4 Url.Content(\cf5 "~/Scripts/customerServices.js"\cf1 )\cf3 "></\cf6 script\cf3 >\cf1\par
+\cf3 <\cf6 script\cf1  \cf7 src\cf3 ="\cf1\highlight2 @\highlight4 Url.Content(\cf5 "~/Scripts/customerController.js"\cf1 )\cf3 "></\cf6 script\cf3 >\cf1\par
+\highlight2\}\highlight4\par
+\cf0\highlight0\f1\fs22\par
+}
+ 

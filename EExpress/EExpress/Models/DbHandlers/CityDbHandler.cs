@@ -11,37 +11,13 @@ namespace EExpress.Models.DbHandlers
 {
     public class CityDbHandler
     {
+
         public List<City> GetCities()
         {
-            string sqlCommand = "spGet";
 
-            using (SqlCommand cmd = General.GetCommand(sqlCommand, Table.m_city))
-            {
-                using (SqlDataAdapter sdAdapter = new SqlDataAdapter(cmd))
-                {
-                    DataSet ds = new DataSet();
-                    sdAdapter.Fill(ds, "m_city");
+            List<City> listCity = Entity.GetCities();
 
-                    List<City> listCity = new List<City>();
-                    foreach (DataRow dr in ds.Tables["m_city"].Rows)
-                    {
-                        listCity.Add(new City()
-                        {
-                            original = dr["original"] as string,
-                            group_area = dr["group_area"] as string,
-                            kdkota = dr["kdkota"] as string,
-                            kd_pengiriman = dr["kd_pengiriman"] as string,
-                            nm = dr["nm"] as string,
-                            alk_manifest = dr["alk_manifest"] as string,
-                            statusx = (dr["statusx"] as string).Trim(),
-                            keyidx = dr["keyidx"] as string,
-                            ambilreport = dr["ambilreport"] as string
-                        });
-                    }
-
-                    return listCity;
-                }
-            }
+            return listCity;
 
         }
 

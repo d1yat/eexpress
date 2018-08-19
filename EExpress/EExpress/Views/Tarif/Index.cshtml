@@ -3,21 +3,109 @@
     ViewBag.Title = "Tarif";
 }
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">Form Tarif</h3>
+<div ng-app="myApp" ng-controller="tarifController">
+    <div class="row" ng-show="message">
+        <div class="col-md-12">
+            <div class="alert alert-info alert-dismissible">
+                <button class="close" type="button" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-info"></i> Alert!</h4>
+                <p>{{message}}</p>
             </div>
-            <form class="form-horizontal" role="form">
-                <div class="box-body">
-                    @Html.Partial("~/Views/Shared/Tarif.cshtml")
-                </div>
-                <div class="box-footer">
-                    <button class="btn btn-primary" type="button"><i class="fa fa-save"></i> Save</button>
-                    <button class="btn btn-default" type="reset">Cancel</button>
-                </div>
-            </form>
         </div>
     </div>
+    <!-- /.row -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Form Tarif</h3>
+                </div>
+                <form class="form-horizontal" role="form">
+                    <div class="box-body">
+                        @Html.Partial("~/Views/Shared/Tarif.cshtml")
+                    </div>
+                    <div class="box-footer">
+                        <button class="btn btn-primary" type="button" ng-click="addEditTarif()"><i class="fa fa-save"></i> Save</button>
+                        <button class="btn btn-default" type="button" ng-click="resetForm()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">List Tarif</h3>
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input class="form-control pull-right" type="text" id="tSearch" placeholder="Search" ng-model="tSearch">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Destination</th>
+                                <th>Product</th>
+                                <th>Shipment (Doc / Pack)</th>
+                                <th>Weight Minimum / Shipment</th>
+                                <th>Price</th>
+                                <th>Next</th>
+                                <th>Valuta</th>
+                                <th>Price Category</th>
+                                <th hidden>Id</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="tarif in listTarif | filter: tSearch" pointer>
+                                <td>{{tarif.dst}}</td>
+                                <td>{{tarif.kdproduct}}</td>
+                                <td>{{tarif.jns_shipment}}</td>
+                                <td>{{tarif.kilo1}}</td>
+                                <td>{{tarif.prckilo1}}</td>
+                                <td>{{tarif.prckilo2}}</td>
+                                <td>{{tarif.valuta_kurs}}</td>
+                                <td>{{tarif.kategory}}</td>
+                                <td hidden>{{tarif.id}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
 </div>
+
+@section Styles {
+    <link href="~/Content/css/select2.css" rel="stylesheet">
+    <link href="~/admin-lte/css/alt/AdminLTE-select2.css" rel="stylesheet">
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/angularjs")
+    @Scripts.Render("~/bundles/angular-ui")
+    @Scripts.Render("~/bundles/select2")
+    <script src="@Url.Content("~/Scripts/site.js")"></script>
+    <script src="@Url.Content("~/Scripts/EExpress/app.js")"></script>
+    <script src="@Url.Content("~/Scripts/EExpress/services/tarifService.js")"></script>
+    <script src="@Url.Content("~/Scripts/EExpress/controllers/tarifController.js")"></script>
+    <script>
+        $(function () {
+            $(".select2").select2({
+                width: "100%"
+            });
+        });
+    </script>
+}
+
+

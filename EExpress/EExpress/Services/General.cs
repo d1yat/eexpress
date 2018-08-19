@@ -33,6 +33,15 @@ namespace EExpress.Services
             return cmd;
         }
 
+        public static SqlCommand GetCommand(string sqlCommand, Table tableName, string orderBy)
+        {
+            SqlCommand cmd = new SqlCommand(sqlCommand, GetConnection());
+            cmd.Parameters.Add("@TableName", SqlDbType.NVarChar, 50).Value = tableName;
+            cmd.Parameters.Add("@OrderBy", SqlDbType.NVarChar, 50).Value = orderBy;
+            cmd.CommandType = CommandType.StoredProcedure;
+            return cmd;
+        }
+
         public static SqlCommand GetCommand(string sqlCommand, Table tableName, Guid id)
         {
             SqlCommand cmd = new SqlCommand(sqlCommand, GetConnection());

@@ -1,0 +1,115 @@
+﻿<div class="form-group">
+    <label class="control-label col-md-2">Destination</label>
+    <div class="col-md-10">
+        @*<input class="form-control" type="text" id="destination" ng-model="m.dst" ng-change="onSelectChange()">*@
+        <select class="form-control select2" id="ddlCity" ng-model="m.dst" ng-change="onCityChange()">
+            <option value="">Please Select</option>
+            <option ng-repeat="city in listCity" value="{{city.kdkota}}" ng-selected="m.dst === city.kdkota">{{city.nm}}</option>
+        </select>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-2">Int. City / Dom / Intl</label>
+    <div class="col-md-10">
+        @*<input class="form-control" type="text" id="shipment" ng-model="m.kdpengiriman">*@
+        <select class="form-control " id="ddlShipment" ng-model="m.kdpengiriman" disabled>
+            <option value="">Please Select</option>
+            <option ng-repeat="opt in ddlShipment" value="{{opt.value}}" ng-selected="m.kdpengiriman === opt.value">{{opt.text}}</option>
+        </select>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-2">Shipment (Doc / Pack)</label>
+    <div class="col-md-10">
+        @*<input class="form-control" type="text" id="shipmentType" ng-model="m.jns_shipment">*@
+        <select class="form-control " id="ddlShipmentType" ng-model="m.jns_shipment" >
+            <option value="">Please Select</option>
+            <option ng-repeat="opt in listShipmentType" value="{{opt.kode}}" ng-selected="m.jns_shipment === opt.kode">{{opt.nm}}</option>
+        </select>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-2">Product</label>
+    <div class="col-md-10">
+        @*<input class="form-control" type="text" id="product" ng-model="m.kdproduct">*@
+        <select class="form-control " id="ddlProduct" ng-model="m.kdproduct">
+            <option value="">Please Select</option>
+            <option ng-repeat="opt in listProduct" value="{{opt.kode}}" ng-selected="m.kdproduct === opt.kode">{{opt.nm}}</option>
+        </select>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-2">Weight Minimum / Shipment</label>
+    <div class="col-md-4">
+        <input class="form-control" type="text" id="wMinShipment" ng-model="m.kilo1">
+    </div>
+    <label class="control-label col-md-2">Weight Minimum Charge</label>
+    <div class="col-md-4">
+        <input class="form-control" type="text" id="wMinCharge" ng-model="m.kilo_min">
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-2">Price</label>
+    <div class="col-md-10">
+        <input class="form-control" type="text" id="price" ng-model="m.prckilo1">
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-2">Next</label>
+    <div class="col-md-4">
+        <input class="form-control" type="text" id="next" ng-model="prckilo2">
+    </div>
+    <div class="col-md-4 checkbox">
+        <label>
+            <input type="checkbox" > Flat P.
+        </label>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-2">Price Category</label>
+    <div class="col-md-4">
+        <select class="form-control" id="ddlCategory" ng-model="m.kategory">
+            <option value="">Please Select</option>
+            <option value="PBS">Regular</option>
+            <option value="KHS">Khusus</option>
+        </select>
+    </div>
+    <div class="col-md-6 checkbox">
+        <label>
+            <input type="checkbox" > Flat N.
+        </label>
+        <label>
+            <input type="checkbox" > No Flat
+        </label>
+        <label>
+            <input type="checkbox" > Flat
+        </label>
+        <span>* Kilo Next</span>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-2">Status</label>
+    <div class="col-md-10">
+        <select class="form-control" id="ddlStatus" disabled>
+            <option value="">Please Select</option>
+            <option value="N">Deactivate</option>
+            <option value="Y">Activate</option>
+        </select>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-2">Valuta</label>
+    <div class="col-md-10">
+        <select class="form-control" id="ddlValuta" ng-model="m.valuta_kurs">
+            <option value="">Please Select</option>
+            <option value="IDR">Rupiah</option>
+            <option value="USD">Dolar</option>
+        </select>
+    </div>
+</div>
+<div class="form-group hidden">
+    <label class="control-label col-md-2">Id</label>
+    <div class="col-md-10">
+        <input class="form-control" type="text" id="id" ng-model="m.id">
+    </div>
+</div>

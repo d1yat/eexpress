@@ -195,6 +195,7 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerViewModel.cs" />
     <Compile Include="Models\DbHandlers\BankDbHandler.cs" />
+    <Compile Include="Models\DbHandlers\TarifDbHandler.cs" />
     <Compile Include="Models\DbHandlers\SignatureDbHandler.cs" />
     <Compile Include="Models\DbHandlers\ValutaDbHandler.cs" />
     <Compile Include="Models\DbHandlers\CourierDbHandler.cs" />
@@ -210,11 +211,14 @@
     <Compile Include="Models\Pager.cs" />
     <Compile Include="Models\PODStatus.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ShipmentType.cs" />
     <Compile Include="Models\Signature.cs" />
     <Compile Include="Models\SiteDomain.cs" />
+    <Compile Include="Models\Tarif.cs" />
     <Compile Include="Models\TermInvoice.cs" />
     <Compile Include="Models\Valuta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Entity.cs" />
     <Compile Include="Services\General.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -358,6 +362,7 @@
     <Content Include="Scripts\EExpress\app.js" />
     <Content Include="Scripts\EExpress\controllers\bankController.js" />
     <Content Include="Scripts\EExpress\controllers\signatureController.js" />
+    <Content Include="Scripts\EExpress\controllers\tarifController.js" />
     <Content Include="Scripts\EExpress\controllers\valutaController.js" />
     <Content Include="Scripts\EExpress\controllers\courierController.js" />
     <Content Include="Scripts\EExpress\controllers\customerController.js" />
@@ -367,6 +372,7 @@
     <Content Include="Scripts\EExpress\controllers\productController.js" />
     <Content Include="Scripts\EExpress\services\bankService.js" />
     <Content Include="Scripts\EExpress\services\signatureService.js" />
+    <Content Include="Scripts\EExpress\services\tarifService.js" />
     <Content Include="Scripts\EExpress\services\valutaService.js" />
     <Content Include="Scripts\EExpress\services\courierService.js" />
     <Content Include="Scripts\EExpress\services\customerService.js" />
