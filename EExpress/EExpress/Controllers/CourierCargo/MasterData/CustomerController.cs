@@ -24,6 +24,7 @@ namespace EExpress.Controllers.CourierCargo.MasterData
 
         public JsonResult GetCustomers(int pageIndex, int pageSize)
         {
+            //Single comment
             var listCustomer = db.GetCustomers(pageIndex, pageSize);
 
             return Json(listCustomer, JsonRequestBehavior.AllowGet);
